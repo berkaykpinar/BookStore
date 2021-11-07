@@ -16,4 +16,12 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Dtos\AdminDtos\" />
+    <None Remove="Dtos\BookAdvertisementDtos\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Dtos\AdminDtos\" />
+    <Folder Include="Dtos\BookAdvertisementDtos\" />
+  </ItemGroup>
 </Project>

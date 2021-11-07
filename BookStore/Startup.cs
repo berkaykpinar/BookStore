@@ -41,6 +41,8 @@ namespace BookStore
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped<IMemberRepo, SqlMemberRepo>();
             services.AddScoped<IContactInfoRepo, SqlContactInfoRepo>();
+            services.AddScoped<IAdminRepo, SqlAdminRepo>();
+            services.AddScoped<IBookAdvertisement, SqlBookAdvertisementRepo>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
