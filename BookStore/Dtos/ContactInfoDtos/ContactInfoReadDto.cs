@@ -9,6 +9,5 @@ namespace BookStore.Dtos.ContactInfoDtos
         public string Phone { get; set; }
 
         public string Telegram { get; set; }
-        public int MemberId { get; set; }
     }
 }

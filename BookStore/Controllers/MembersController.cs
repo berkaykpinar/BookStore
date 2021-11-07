@@ -28,6 +28,7 @@ namespace BookStore.Controllers
             var memberModel=_mapper.Map<Member>(memberCreateDto);
             memberModel.UserType = "2";
             memberModel.Score = 0;
+            //memberModel.Contact.ContactInfoId=memberCreateDto.Id;
             repo.CreateMember(memberModel);
             repo.SaveChanges();
             

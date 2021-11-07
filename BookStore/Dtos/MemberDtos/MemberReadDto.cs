@@ -1,4 +1,5 @@
-﻿using BookStore.Models;
+﻿using BookStore.Dtos.ContactInfoDtos;
+using BookStore.Models;
 using System.ComponentModel.DataAnnotations;
 namespace BookStore.Dtos.MemberDtos
 {
@@ -13,6 +14,6 @@ namespace BookStore.Dtos.MemberDtos
 
         public int Score { get; set; }
 
-        public virtual ContactInfo Contact { get; set; }
+        public virtual ContactInfoReadDto ContactInfoReadDto { get; set; }
     }
 }

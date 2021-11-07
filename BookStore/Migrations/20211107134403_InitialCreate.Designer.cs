@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookStore.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20211106223847_InitialCreate")]
+    [Migration("20211107134403_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -118,15 +118,10 @@ namespace BookStore.Migrations
             modelBuilder.Entity("BookStore.Models.ContactInfo", b =>
                 {
                     b.Property<int>("ContactInfoId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("MemberId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Phone")
                         .HasColumnType("nvarchar(max)");
@@ -135,9 +130,6 @@ namespace BookStore.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ContactInfoId");
-
-                    b.HasIndex("MemberId")
-                        .IsUnique();
 
                     b.ToTable("ContactInfos");
                 });
@@ -242,7 +234,7 @@ namespace BookStore.Migrations
                 {
                     b.HasOne("BookStore.Models.Member", "Member")
                         .WithOne("Contact")
-                        .HasForeignKey("BookStore.Models.ContactInfo", "MemberId")
+                        .HasForeignKey("BookStore.Models.ContactInfo", "ContactInfoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

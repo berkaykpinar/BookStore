@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
-
+using BookStore.Dtos.ContactInfoDtos;
+using BookStore.Models;
 namespace BookStore.Dtos.MemberDtos
 {
     public class MemberCreateDto
@@ -16,6 +17,8 @@ namespace BookStore.Dtos.MemberDtos
 
         [Required]
         public string Password { get; set; }
+
+        //public virtual ContactInfoCreateDto ContactInfoCreate { get; set; }
 
     }
 }

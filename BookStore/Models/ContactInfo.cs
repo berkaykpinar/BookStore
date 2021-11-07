@@ -4,7 +4,7 @@ namespace BookStore.Models
 {
     public class ContactInfo
     {
-       
+        [ForeignKey("Member")]
         public int ContactInfoId {  get; set; }
 
         public string Email {  get; set; }
@@ -12,8 +12,6 @@ namespace BookStore.Models
 
         public string Telegram {  get; set; }
 
-        [ForeignKey("Member")]
-        public int MemberId {  get; set; }
         public virtual Member Member {  get; set; }
     }
 }

@@ -85,19 +85,17 @@ namespace BookStore.Migrations
                 name: "ContactInfos",
                 columns: table => new
                 {
-                    ContactInfoId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ContactInfoId = table.Column<int>(type: "int", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Telegram = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    MemberId = table.Column<int>(type: "int", nullable: false)
+                    Telegram = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ContactInfos", x => x.ContactInfoId);
                     table.ForeignKey(
-                        name: "FK_ContactInfos_Users_MemberId",
-                        column: x => x.MemberId,
+                        name: "FK_ContactInfos_Users_ContactInfoId",
+                        column: x => x.ContactInfoId,
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -151,12 +149,6 @@ namespace BookStore.Migrations
                 name: "IX_Books_AuthorId",
                 table: "Books",
                 column: "AuthorId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ContactInfos_MemberId",
-                table: "ContactInfos",
-                column: "MemberId",
-                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
