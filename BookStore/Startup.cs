@@ -64,6 +64,8 @@ namespace BookStore
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            
+            
 
             app.UseAuthorization();
 
