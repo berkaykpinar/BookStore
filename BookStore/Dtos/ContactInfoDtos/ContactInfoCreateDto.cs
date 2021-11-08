@@ -12,7 +12,7 @@ namespace BookStore.Dtos.ContactInfoDtos
 
         public string Telegram { get; set; }
 
-        public MemberReadDto memberReadDto {  get; set; }
+        public int MemberId { get; set; }
 
     }
 }

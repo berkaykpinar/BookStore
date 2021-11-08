@@ -9,9 +9,11 @@ namespace BookStore.Data.Abstracts
 
         Book GetBook(int id);
 
-        ICollection<Book> GetallBooks();
+        IEnumerable<Book> GetallBooks();
 
         void CreateBook(Book book);
+
+        bool FindBookByTitle(string title);
 
     }
 }

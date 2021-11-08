@@ -28,7 +28,7 @@ namespace BookStore.Data.Concretes
             return _context.Books.FirstOrDefault(x => x.BookId == id);
         }
 
-        public ICollection<Book> GetallBooks()
+        public IEnumerable<Book> GetallBooks()
         {
             return _context.Books.ToList();
         }
@@ -40,8 +40,12 @@ namespace BookStore.Data.Concretes
                 throw new Exception("book is empty");
             }
                 
-                
-             _context.Books.Add(book);
+            _context.Books.Add(book);
+        }
+
+        public bool FindBookByTitle(string title)
+        {
+            return _context.Books.ToList().Exists(book => book.Title.ToLower().Contains(title.ToLower()));
         }
     }
 }

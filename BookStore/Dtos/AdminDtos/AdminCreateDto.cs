@@ -18,8 +18,6 @@ namespace BookStore.Dtos.AdminDtos
         [Required]
         public string Password { get; set; }
 
-        //public virtual ContactInfoCreateDto ContactInfoCreate { get; set; }
-        //public virtual ContactInfoCreateDto ContactInfoCreate { get; set; }
 
 
 

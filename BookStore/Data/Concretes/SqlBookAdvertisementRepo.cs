@@ -18,7 +18,13 @@ namespace BookStore.Data.Concretes
 
         public void CreateBookAdvertisement(BookAdvertisement bookAdvertisement)
         {
-            throw new NotImplementedException();
+            if (bookAdvertisement == null)
+            {
+                throw new ArgumentNullException("member is null");
+            }
+
+           
+            _appDbContext.BookAdvertisements.Add(bookAdvertisement);
         }
 
         public IEnumerable<BookAdvertisement> GetAllBookAdvertisements()
@@ -33,12 +39,18 @@ namespace BookStore.Data.Concretes
 
         public bool SaveChanges()
         {
-            throw new NotImplementedException();
+            return (_appDbContext.SaveChanges() > 0);
         }
 
         public void UpdateBookAdvertisement(BookAdvertisement bookAdvertisement, int memberId)
         {
             throw new NotImplementedException();
+        }
+
+        public IEnumerable<BookAdvertisement> GetBookAdsByMemberId(int memberId)
+        {
+            
+            return _appDbContext.BookAdvertisements.ToList().Where(x => x.Member.Id==memberId);
         }
     }
 }

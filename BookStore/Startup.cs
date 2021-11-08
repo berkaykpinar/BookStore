@@ -44,6 +44,7 @@ namespace BookStore
             services.AddScoped<IAdminRepo, SqlAdminRepo>();
             services.AddScoped<IBookAdvertisement, SqlBookAdvertisementRepo>();
             services.AddScoped<IBookRepo, SqlBookRepo>();
+            services.AddScoped<IProcessRepo, SqlProcessRepo>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

@@ -53,28 +53,42 @@ namespace BookStore.Controllers
             //}
         }
 
-        [HttpPut("{id}")]
-        public ActionResult UpdateContactInfo(int memberId, ContactInfoCreateDto contactInfo )
+        [HttpGet("{id}",Name = "GetContactByMemberId")]
+        public ActionResult<ContactInfoReadDto> GetContactByMemberId(int id)
         {
-            Member tempMember;
-         
-            var memberModel = _memberRepo.GetMember(memberId);
-            if (memberModel == null)
+            var contactModel = _contactInfoRepo.GetContactInfo(id);
+            if (contactModel == null)
             {
-                return NotFound();
+                return NotFound("Member doesn't exist!");
             }
-
-            tempMember = memberModel;
-            tempMember.Id += 1;
-            tempMember.Contact = _mapper.Map<ContactInfo>(contactInfo);
-
-            _mapper.Map(memberModel,tempMember);
-            _contactInfoRepo.UpdateContactInfo(memberModel.Contact);  
-            _memberRepo.SaveChanges();
-            _contactInfoRepo.SaveChanges();
-            return NoContent();
-
+            else
+            {
+                return Ok(_mapper.Map<ContactInfoReadDto>(contactModel));
+            }
         }
+
+        //[HttpPut("{id}")]
+        //public ActionResult UpdateContactInfo(int memberId, ContactInfoCreateDto contactInfo )
+        //{
+        //    Member tempMember;
+         
+        //    var memberModel = _memberRepo.GetMember(memberId);
+        //    if (memberModel == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    tempMember = memberModel;
+        //    tempMember.Id += 1;
+        //    tempMember.Contact = _mapper.Map<ContactInfo>(contactInfo);
+
+        //    _mapper.Map(memberModel,tempMember);
+        //    _contactInfoRepo.UpdateContactInfo(memberModel.Contact);  
+        //    _memberRepo.SaveChanges();
+        //    _contactInfoRepo.SaveChanges();
+        //    return NoContent();
+
+        //}
 
     }
 }

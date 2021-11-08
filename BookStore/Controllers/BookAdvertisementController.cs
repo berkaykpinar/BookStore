@@ -12,9 +12,9 @@ namespace BookStore.Controllers
     public class BookAdvertisementController : ControllerBase
     {
         private readonly IBookAdvertisement _bookAdvertisementRepo;
-        private readonly Mapper _mapper;
+        private readonly IMapper _mapper;
 
-        public BookAdvertisementController(IBookAdvertisement bookAdvertisementRepo, Mapper mapper)
+        public BookAdvertisementController(IBookAdvertisement bookAdvertisementRepo, IMapper mapper)
         {
             _bookAdvertisementRepo = bookAdvertisementRepo;
             _mapper = mapper;
@@ -34,7 +34,7 @@ namespace BookStore.Controllers
             
             
         }
-        [HttpGet(template:"{id}",Name = "GetBookAdvertisement")]
+        [HttpGet(template:"/findByMemberId/{id}",Name = "GetBookAdvertisement")]
         public ActionResult<BookAdvertisementReadDto> GetBookAdvertisement(int id)
         {
             var bookAd = _bookAdvertisementRepo.GetBookAdvertisementById(id);
@@ -45,6 +45,20 @@ namespace BookStore.Controllers
             }
 
             return Ok(_mapper.Map<BookAdvertisementReadDto>(bookAd));
+
+        }
+
+        [HttpGet(template: "{id}", Name = "GetBookAdsByMemberId")]
+        public ActionResult<IEnumerable<BookAdvertisementReadDto>> GetBookAdsByMemberId(int id)
+        {
+            var bookAd = _bookAdvertisementRepo.GetBookAdvertisementById(id);
+
+            if (bookAd == null)
+            {
+                return NoContent();
+            }
+
+            return Ok(_mapper.Map<IEnumerable<BookAdvertisementReadDto>>(bookAd));
 
         }
 

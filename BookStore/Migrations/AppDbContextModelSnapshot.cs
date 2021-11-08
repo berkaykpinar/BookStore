@@ -116,10 +116,15 @@ namespace BookStore.Migrations
             modelBuilder.Entity("BookStore.Models.ContactInfo", b =>
                 {
                     b.Property<int>("ContactInfoId")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("MemberId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Phone")
                         .HasColumnType("nvarchar(max)");
@@ -128,6 +133,9 @@ namespace BookStore.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ContactInfoId");
+
+                    b.HasIndex("MemberId")
+                        .IsUnique();
 
                     b.ToTable("ContactInfos");
                 });
@@ -232,7 +240,7 @@ namespace BookStore.Migrations
                 {
                     b.HasOne("BookStore.Models.Member", "Member")
                         .WithOne("Contact")
-                        .HasForeignKey("BookStore.Models.ContactInfo", "ContactInfoId")
+                        .HasForeignKey("BookStore.Models.ContactInfo", "MemberId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

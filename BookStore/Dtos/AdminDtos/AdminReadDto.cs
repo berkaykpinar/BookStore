@@ -13,9 +13,7 @@ namespace BookStore.Dtos.AdminDtos
 
         public string Email { get; set; }
 
-        public int Score { get; set; }
-
-        public ICollection<ApprovalProcess> Approvals { get; set; }
+        public IEnumerable<ApprovalProcess> Approvals { get; set; }
 
         //added
     }

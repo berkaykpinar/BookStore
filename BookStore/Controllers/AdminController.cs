@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using BookStore.Data;
+
 namespace BookStore.Controllers
 {
     [Route("api/controller/admin")]
@@ -14,6 +16,7 @@ namespace BookStore.Controllers
     {
         private readonly IAdminRepo repo;
         private readonly IMapper _mapper;
+       
 
         public AdminController(IAdminRepo _repo, IMapper mapper)
         {

@@ -6,7 +6,5 @@ namespace BookStore.Dtos.ContactInfoDtos
     {
         public ContactInfo Contact {  get; set; }
 
-
-
     }
 }

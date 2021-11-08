@@ -14,5 +14,7 @@ namespace BookStore.Data.Abstracts
         void CreateBookAdvertisement(BookAdvertisement bookAdvertisement);
 
         public void UpdateBookAdvertisement(BookAdvertisement bookAdvertisement, int memberId);
+
+        public IEnumerable<BookAdvertisement> GetBookAdsByMemberId(int  memberId);
     }
 }

@@ -32,7 +32,7 @@ namespace BookStore.Data.Concretes
 
         public ContactInfo GetContactInfo(int id)
         {
-            return _appDbContext.ContactInfos.FirstOrDefault(x => x.ContactInfoId == id);
+            return _appDbContext.ContactInfos.FirstOrDefault(x => x.MemberId == id);
         }
 
         public void UpdateContactInfo(ContactInfo contact)
