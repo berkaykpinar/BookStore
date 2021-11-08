@@ -30,8 +30,6 @@ namespace BookStore.Controllers
             //memberModel.Contact.ContactInfoId=memberCreateDto.Id;
             repo.CreateAdmin(adminModel);
             repo.SaveChanges();
-
-
             return Ok(adminModel);
         }
 
