@@ -22,7 +22,7 @@ namespace BookStore.Data.Concretes
 
         public IEnumerable<ApprovalProcess> GetAllProcesses()
         {
-            throw new System.NotImplementedException();
+            return _appDbContext.ApprovalProcesses.ToList();
         }
 
         public IEnumerable<ApprovalProcess> GetProcessByAdminId(int id)
@@ -36,6 +36,8 @@ namespace BookStore.Data.Concretes
             {
                 throw new ArgumentNullException("member is null");
             }
+
+           
             _appDbContext.ApprovalProcesses.Add(approvalProcess);
 
         }

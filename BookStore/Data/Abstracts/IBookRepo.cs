@@ -13,7 +13,7 @@ namespace BookStore.Data.Abstracts
 
         void CreateBook(Book book);
 
-        bool FindBookByTitle(string title);
+        IEnumerable<Book> FindBookByTitle(string title);
 
     }
 }

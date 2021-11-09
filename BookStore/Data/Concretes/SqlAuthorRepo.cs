@@ -25,7 +25,7 @@ namespace BookStore.Data.Concretes
             return _context.Authors.FirstOrDefault(x => x.AuthorId == id);
         }
 
-        public IEnumerable<Author> GetallAuthors()
+        public IEnumerable<Author> GetAllAuthors()
         {
             return _context.Authors.ToList();
         }
@@ -41,10 +41,10 @@ namespace BookStore.Data.Concretes
             _context.Authors.Add(author);
         }
 
-        public bool FindAuthorByName(string name)
+        public IEnumerable<Author> FindAuthorByName(string name)
         {
-            return _context.Authors.ToList().Exists(author => author.AuthorName.ToLower().Contains(name.ToLower()));
-
+            return _context.Authors.ToList().Where(x => x.AuthorName.ToLower().Contains(name.ToLower()));
+            
         }
     }
 }

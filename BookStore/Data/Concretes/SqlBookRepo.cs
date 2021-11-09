@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using BookStore.Data.Abstracts;
+using BookStore.Dtos.BookDtos;
 using BookStore.Models;
 
 namespace BookStore.Data.Concretes
@@ -43,9 +44,11 @@ namespace BookStore.Data.Concretes
             _context.Books.Add(book);
         }
 
-        public bool FindBookByTitle(string title)
+        public IEnumerable<Book> FindBookByTitle(string title)
         {
-            return _context.Books.ToList().Exists(book => book.Title.ToLower().Contains(title.ToLower()));
+             return  _context.Books.ToList().Where(x => x.Title.ToLower().Contains(title.ToLower()));
+
+             //return _context.Books.ToList().Exists(book => book.Title.ToLower().Contains(title.ToLower()));
         }
     }
 }

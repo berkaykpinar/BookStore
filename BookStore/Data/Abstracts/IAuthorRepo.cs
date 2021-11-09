@@ -9,10 +9,10 @@ namespace BookStore.Data.Abstracts
 
         Author GetAuthor(int id);
 
-        IEnumerable<Author> GetallAuthors();
+        IEnumerable<Author> GetAllAuthors();
 
         void CreateAuthor(Author author);
 
-        bool FindAuthorByName(string name);
+        IEnumerable<Author> FindAuthorByName(string name);
     }
 }
