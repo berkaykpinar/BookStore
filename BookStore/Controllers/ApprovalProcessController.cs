@@ -3,10 +3,12 @@ using AutoMapper;
 using BookStore.Data.Abstracts;
 using BookStore.Dtos.ProcessDtos;
 using BookStore.Models;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookStore.Controllers
 {
+    [EnableCors("CorsPolicy")]
     [ApiController]
     [Route("/api/controller/process")]
     public class ApprovalProcessController : ControllerBase

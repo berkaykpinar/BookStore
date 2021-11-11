@@ -3,10 +3,12 @@ using AutoMapper;
 using BookStore.Data.Abstracts;
 using BookStore.Dtos.AuthorDtos;
 using BookStore.Models;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookStore.Controllers
 {
+    [EnableCors("CorsPolicy")]
     [ApiController]
     [Route("api/controller/author")]
     public class AuthorController : ControllerBase
@@ -45,7 +47,7 @@ namespace BookStore.Controllers
             }
             else
             {
-                return Ok(_mapper.Map<AuthorReadDto>(authorList));
+                return Ok(_mapper.Map<IEnumerable<AuthorReadDto>>(authorList));
             }
         }
 
@@ -62,7 +64,7 @@ namespace BookStore.Controllers
         }
 
         [HttpGet("/authors/{name}",Name ="GetAuthorsByName" )]
-        public ActionResult<AuthorReadDto> GetAuthorsByName(string name)
+        public ActionResult<IEnumerable<AuthorReadDto>> GetAuthorsByName(string name)
         {
             var authors = _authorRepo.FindAuthorByName(name);
 
@@ -72,7 +74,7 @@ namespace BookStore.Controllers
             }
             else
             {
-                return Ok(_mapper.Map<AuthorReadDto>(authors));
+                return Ok(_mapper.Map<IEnumerable<AuthorReadDto>>(authors));
             }
         }
         

@@ -34,7 +34,7 @@ namespace BookStore.Data.Concretes
 
         public BookAdvertisement GetBookAdvertisementById(int id)
         {
-            throw new NotImplementedException();
+            return _appDbContext.BookAdvertisements.FirstOrDefault(m => m.BookAdvertisementId == id);
         }
 
         public bool SaveChanges()
@@ -50,7 +50,7 @@ namespace BookStore.Data.Concretes
         public IEnumerable<BookAdvertisement> GetBookAdsByMemberId(int memberId)
         {
             
-            return _appDbContext.BookAdvertisements.ToList().Where(x => x.Member.Id==memberId);
+            return _appDbContext.BookAdvertisements.ToList().Where(x => x.MemberId==memberId);
         }
     }
 }

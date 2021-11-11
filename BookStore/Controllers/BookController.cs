@@ -4,10 +4,12 @@ using BookStore.Data.Abstracts;
 using BookStore.Dtos.AuthorDtos;
 using BookStore.Dtos.BookDtos;
 using BookStore.Models;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookStore.Controllers
 {
+    [EnableCors("CorsPolicy")]
     [ApiController]
     [Route("api/controller/book")]
     public class BookController : ControllerBase
@@ -47,7 +49,7 @@ namespace BookStore.Controllers
             }
             else
             {
-                return Ok(_mapper.Map<BookReadDto>(bookList));
+                return Ok(_mapper.Map<IEnumerable<BookReadDto>>(bookList));
             }
         }
 

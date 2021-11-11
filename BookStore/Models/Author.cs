@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using BookStore.Dtos.BookDtos;
 
 namespace BookStore.Models
 {
@@ -9,6 +10,6 @@ namespace BookStore.Models
 
         public string AuthorName {  get; set; }
         public string Description {  get; set; }
-        public ICollection<Book> Books {  get; set; }
+        public virtual ICollection<BookReadDto> Books {  get; set; }
     }
 }

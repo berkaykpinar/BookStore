@@ -6,10 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Cors;
 
 
 namespace BookStore.Controllers
 {
+    [EnableCors("CorsPolicy")]
     [Route("api/controller/ContactInfo")]
     [ApiController]    
     public class ContactInfoController : ControllerBase

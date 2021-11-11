@@ -12,8 +12,8 @@ namespace BookStore.Models
 
         [ForeignKey("Author")]
         public int AuthorId {  get; set; }
-        public Author Author { get; set; }
+        public virtual Author Author { get; set; }
 
-       public ICollection<BookAdvertisement> AdLists { get; set; }
+       public virtual ICollection<BookAdvertisement> AdLists { get; set; }
     }
 }

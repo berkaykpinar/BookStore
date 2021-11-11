@@ -4,6 +4,6 @@ namespace BookStore.Models
 {
     public class Admin : UserBase
     {
-        public IList<ApprovalProcess> Approvals { get; set; }
+        public virtual IList<ApprovalProcess> Approvals { get; set; }
     }
 }

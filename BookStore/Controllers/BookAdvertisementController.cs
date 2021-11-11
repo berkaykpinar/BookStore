@@ -3,10 +3,12 @@ using AutoMapper;
 using BookStore.Data.Abstracts;
 using BookStore.Dtos.BookAdvertisementDtos;
 using BookStore.Models;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookStore.Controllers
 {
+    [EnableCors("CorsPolicy")]
     [ApiController]
     [Route("api/controller/bookadvertisement")]
     public class BookAdvertisementController : ControllerBase
@@ -34,7 +36,7 @@ namespace BookStore.Controllers
             
             
         }
-        [HttpGet(template:"/findByMemberId/{id}",Name = "GetBookAdvertisement")]
+        [HttpGet(template:"{id}",Name = "GetBookAdvertisement")]
         public ActionResult<BookAdvertisementReadDto> GetBookAdvertisement(int id)
         {
             var bookAd = _bookAdvertisementRepo.GetBookAdvertisementById(id);
@@ -48,10 +50,10 @@ namespace BookStore.Controllers
 
         }
 
-        [HttpGet(template: "{id}", Name = "GetBookAdsByMemberId")]
+        [HttpGet(template: "/findByMemberId/{id}", Name = "GetBookAdsByMemberId")]
         public ActionResult<IEnumerable<BookAdvertisementReadDto>> GetBookAdsByMemberId(int id)
         {
-            var bookAd = _bookAdvertisementRepo.GetBookAdvertisementById(id);
+            var bookAd = _bookAdvertisementRepo.GetBookAdsByMemberId(id);
 
             if (bookAd == null)
             {

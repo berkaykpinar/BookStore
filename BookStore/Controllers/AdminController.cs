@@ -7,9 +7,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using BookStore.Data;
+using Microsoft.AspNetCore.Cors;
 
 namespace BookStore.Controllers
 {
+    [EnableCors("CorsPolicy")]
     [Route("api/controller/admin")]
     [ApiController]
     public class AdminController : ControllerBase

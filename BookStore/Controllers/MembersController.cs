@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Cors;
 
 namespace BookStore.Controllers
 {
+    [EnableCors("CorsPolicy")]
     [Route("api/controller")]
     [ApiController]
     public class MembersController : ControllerBase

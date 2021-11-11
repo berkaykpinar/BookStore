@@ -8,7 +8,7 @@ namespace BookStore.Models
 
         public virtual ContactInfo Contact {  get; set; }
 
-        public ICollection<BookAdvertisement> Advertisements { get; set; }
+        public virtual ICollection<BookAdvertisement> Advertisements { get; set; }
 
 
 

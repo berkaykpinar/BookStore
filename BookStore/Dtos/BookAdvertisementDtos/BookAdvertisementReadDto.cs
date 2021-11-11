@@ -10,7 +10,7 @@ namespace BookStore.Dtos.BookAdvertisementDtos
         
         public int BookId { get; set; }
 
-        //public Book Book { get; set; }
+        public Book Book { get; set; }
 
         public string Condition { get; set; }
 

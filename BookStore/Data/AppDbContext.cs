@@ -10,7 +10,12 @@ namespace BookStore.Data
 
         }
 
-     
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
+            optionsBuilder.UseLazyLoadingProxies();
+        }
+
 
         public DbSet<Book> Books { get; set; }
         public DbSet<UserBase> Users {  get; set; }

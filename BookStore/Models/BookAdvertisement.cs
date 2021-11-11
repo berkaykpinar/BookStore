@@ -9,7 +9,7 @@ namespace BookStore.Models
     
         [ForeignKey("Book")]
         public int BookId {  get; set; }
-        public Book Book {  get; set; }
+        public virtual Book Book {  get; set; }
         public string Condition {  get; set; }
 
         public double Price {  get; set; }
@@ -18,6 +18,6 @@ namespace BookStore.Models
 
         [ForeignKey("Member")]
         public int MemberId {  get; set; }
-        public Member Member {  get; set; }
+        public virtual Member Member {  get; set; }
     }
 }
