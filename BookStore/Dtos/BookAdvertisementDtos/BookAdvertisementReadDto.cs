@@ -1,4 +1,6 @@
 ﻿using System;
+using BookStore.Dtos.BookDtos;
+using BookStore.Dtos.MemberDtos;
 using BookStore.Models;
 
 namespace BookStore.Dtos.BookAdvertisementDtos
@@ -10,7 +12,7 @@ namespace BookStore.Dtos.BookAdvertisementDtos
         
         public int BookId { get; set; }
 
-        public Book Book { get; set; }
+        public BookReadDto Book { get; set; }
 
         public string Condition { get; set; }
 
@@ -20,6 +22,6 @@ namespace BookStore.Dtos.BookAdvertisementDtos
 
         public int MemberId { get; set; }
 
-        public Member Member { get; set; }
+        public MemberReadDto Member { get; set; }
     }
 }

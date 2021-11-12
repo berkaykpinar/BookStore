@@ -10,8 +10,9 @@ namespace BookStore.Models
         public string Title { get; set; }
         public string Description { get; set; }
 
-        [ForeignKey("Author")]
+       
         public int AuthorId {  get; set; }
+
         public virtual Author Author { get; set; }
 
        public virtual ICollection<BookAdvertisement> AdLists { get; set; }
