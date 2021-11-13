@@ -5,14 +5,18 @@ import { Container, Menu, Input, Form, Button } from "semantic-ui-react";
 import SearchResults from "../pages/SearchResults";
 
 const Navi = () => {
-  const [isLoggedIn, setLoggedIn] = useState(false);
+  const [isLoggedIn, SetIsLoggedIn] = useState(false);
   const [input, setInput] = useState("");
+  const [userType, setUserType] = useState(1);
 
-  const history = useHistory();
-
-  // let handleClick = () => {
-  //   history.push("/searchresults/" + input);
-  // };
+  let handleLogin = () => {
+    SetIsLoggedIn(true);
+    setUserType(2);
+  };
+  let handleAdminLogin = () => {
+    SetIsLoggedIn(true);
+    setUserType(1);
+  };
   return (
     <div style={{ marginBottom: "3%" }}>
       <Menu inverted size="large" className="app" color="brown">
@@ -21,11 +25,20 @@ const Navi = () => {
             <Link to="/">Main Page</Link>
           </Menu.Item>
           <Menu.Item>
-            <Link>My Ads</Link>
+            <Link to="/library">Library</Link>
           </Menu.Item>
-          <Menu.Item>
-            <Link to="/addAdvertisement">Add Advertisement</Link>
-          </Menu.Item>
+
+          {isLoggedIn && userType == 2 && (
+            <Menu.Item>
+              <Link to="/addAdvertisement">Add Advertisement</Link>
+            </Menu.Item>
+          )}
+          {isLoggedIn && userType == 2 && (
+            <Menu.Item>
+              <Link to="/myadvertisements">My Advertisements</Link>
+            </Menu.Item>
+          )}
+
           <Menu.Item>
             <Form>
               <Input
@@ -41,6 +54,30 @@ const Navi = () => {
               </Button>
             </Form>
           </Menu.Item>
+          {isLoggedIn ? (
+            <Menu.Item position="right">
+              <Link onClick={() => SetIsLoggedIn(false)} to="/">
+                {" "}
+                Log Out
+              </Link>
+            </Menu.Item>
+          ) : (
+            <Menu.Item position="right">
+              <Button
+                onClick={() => handleLogin()}
+                content="Login"
+                primary
+                style={{ marginRight: "10px" }}
+              />
+              <Button
+                onClick={() => handleAdminLogin()}
+                content="Admin Login"
+                primary
+                style={{ marginRight: "10px" }}
+              />
+              <Button content="Register" secondary />
+            </Menu.Item>
+          )}
         </Container>
       </Menu>
     </div>

@@ -3,8 +3,12 @@ import { Route } from "react-router-dom";
 import { Grid, GridColumn } from "semantic-ui-react";
 import AddAdvertisement from "../pages/AddAdvertisement";
 import AdvertisementList from "../pages/AdvertisementList";
-import BookDetails from "../pages/BookDetails";
+import AuthorPage from "../pages/AuthorPage";
 import SearchResults from "../pages/SearchResults";
+import AdvertisementDetails from "../pages/AdvertisementDetails";
+import BookDetails from "../pages/BookDetails";
+import LibraryPage from "../pages/LibraryPage";
+import MyAdvertisements from "../pages/MyAdvertisements";
 
 const Dashboard = () => {
   return (
@@ -25,8 +29,16 @@ const Dashboard = () => {
             />
             <Route
               exact
-              path="/bookdetails/:bookId/:memberId"
-              component={BookDetails}
+              path="/advertisementDetails/:memberId/:adId"
+              component={AdvertisementDetails}
+            />
+            <Route exact path="/author/:authorId" component={AuthorPage} />
+            <Route exact path="/bookdetails/:bookId" component={BookDetails} />
+            <Route exact path="/library" component={LibraryPage} />
+            <Route
+              exact
+              path="/myadvertisements/:memberId"
+              component={MyAdvertisements}
             />
           </GridColumn>
         </Grid.Row>

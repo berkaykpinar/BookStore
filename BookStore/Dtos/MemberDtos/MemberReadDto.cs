@@ -16,7 +16,7 @@ namespace BookStore.Dtos.MemberDtos
 
         public int Score { get; set; }
 
-        //public virtual ContactInfoReadDto ContactInfoReadDto { get; set; }
+        public virtual ContactInfo ContactInfoReadDto { get; set; }
 
         //public virtual ICollection<BookAdvertisement> bookAdList { get; set; } 
     }

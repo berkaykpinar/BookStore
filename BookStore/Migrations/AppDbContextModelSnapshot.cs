@@ -134,8 +134,7 @@ namespace BookStore.Migrations
 
                     b.HasKey("ContactInfoId");
 
-                    b.HasIndex("MemberId")
-                        .IsUnique();
+                    b.HasIndex("MemberId");
 
                     b.ToTable("ContactInfos");
                 });
@@ -189,8 +188,13 @@ namespace BookStore.Migrations
                 {
                     b.HasBaseType("BookStore.Models.UserBase");
 
+                    b.Property<int>("ContactInfoId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Score")
                         .HasColumnType("int");
+
+                    b.HasIndex("ContactInfoId");
 
                     b.HasDiscriminator().HasValue("Member");
                 });
@@ -239,12 +243,23 @@ namespace BookStore.Migrations
             modelBuilder.Entity("BookStore.Models.ContactInfo", b =>
                 {
                     b.HasOne("BookStore.Models.Member", "Member")
-                        .WithOne("Contact")
-                        .HasForeignKey("BookStore.Models.ContactInfo", "MemberId")
+                        .WithMany()
+                        .HasForeignKey("MemberId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Member");
+                });
+
+            modelBuilder.Entity("BookStore.Models.Member", b =>
+                {
+                    b.HasOne("BookStore.Models.ContactInfo", "ContactInfo")
+                        .WithMany()
+                        .HasForeignKey("ContactInfoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ContactInfo");
                 });
 
             modelBuilder.Entity("BookStore.Models.Author", b =>
@@ -265,8 +280,6 @@ namespace BookStore.Migrations
             modelBuilder.Entity("BookStore.Models.Member", b =>
                 {
                     b.Navigation("Advertisements");
-
-                    b.Navigation("Contact");
                 });
 #pragma warning restore 612, 618
         }

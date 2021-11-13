@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BookStore.Dtos.MemberDtos;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BookStore.Dtos.ContactInfoDtos
 {
@@ -9,5 +10,6 @@ namespace BookStore.Dtos.ContactInfoDtos
         public string Phone { get; set; }
 
         public string Telegram { get; set; }
+        public virtual MemberReadDto Member { get; set; }
     }
 }

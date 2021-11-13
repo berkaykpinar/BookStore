@@ -16,4 +16,16 @@ export default class MemberService {
   getMemberById(memberId) {
     return axios.get("https://localhost:44341/findByMemberId/" + memberId);
   }
+
+  getAdvertisementByAdId(adId) {
+    return axios.get(
+      "https://localhost:44341/api/controller/bookadvertisement/" + adId
+    );
+  }
+
+  getContactInfoByInfoId(id) {
+    return axios.get(
+      "https://localhost:44341/api/controller/ContactInfo/" + id
+    );
+  }
 }

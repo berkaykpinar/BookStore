@@ -73,7 +73,9 @@ const AdvertisementList = () => {
                   key={list.bookAdvertisementId}
                 >
                   <Table.Cell>
-                    <Link to={`/bookdetails/${list.bookId}/${list.member.id}`}>
+                    <Link
+                      to={`/advertisementDetails/${list.member.id}/${list.bookAdvertisementId}`}
+                    >
                       {" "}
                       <Icon size="large" name="zoom"></Icon>
                     </Link>

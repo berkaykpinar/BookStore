@@ -17,7 +17,15 @@ export default class BookService {
     return axios.get("https://localhost:44341/authors/" + word);
   }
 
+  getAuthorById(id) {
+    return axios.get("https://localhost:44341/api/controller/author/" + id);
+  }
+
   addAuthor(author) {
     return axios.post("https://localhost:44341/api/controller/author", author);
+  }
+
+  getAllBooks() {
+    return axios.get("https://localhost:44341/api/controller/book");
   }
 }
