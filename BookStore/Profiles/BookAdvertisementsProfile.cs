@@ -9,7 +9,8 @@ namespace BookStore.Profiles
         {
             CreateMap<BookAdvertisementCreateDto, BookAdvertisement>();
             CreateMap<BookAdvertisement, BookAdvertisementReadDto>();
-
+            CreateMap<BookAdvertisement, BookAdvertisementUpdateDto>();
+            CreateMap<BookAdvertisementUpdateDto, BookAdvertisement>();
         }
     }
 }

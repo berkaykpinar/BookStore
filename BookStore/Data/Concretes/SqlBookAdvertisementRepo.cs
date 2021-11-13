@@ -42,9 +42,9 @@ namespace BookStore.Data.Concretes
             return (_appDbContext.SaveChanges() > 0);
         }
 
-        public void UpdateBookAdvertisement(BookAdvertisement bookAdvertisement, int memberId)
+        public void UpdateBookAdvertisement(BookAdvertisement bookAdvertisement)
         {
-            throw new NotImplementedException();
+            //nothing. Just intuitive
         }
 
         public IEnumerable<BookAdvertisement> GetBookAdsByMemberId(int memberId)

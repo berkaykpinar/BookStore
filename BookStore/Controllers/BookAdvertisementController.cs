@@ -4,6 +4,7 @@ using BookStore.Data.Abstracts;
 using BookStore.Dtos.BookAdvertisementDtos;
 using BookStore.Models;
 using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookStore.Controllers
@@ -74,6 +75,30 @@ namespace BookStore.Controllers
                 _bookAdvertisementRepo.SaveChanges();
 
                 return Ok(bookAd);
+        }
+
+        [HttpPatch("{id}",Name = "PartialAdvertisementUpdate")]
+        public ActionResult PartialAdvertisementUpdate(int id, JsonPatchDocument<BookAdvertisementUpdateDto> patchDocument)
+        {
+            var advertisementModel = _bookAdvertisementRepo.GetBookAdvertisementById(id);
+            if (advertisementModel == null)
+            {
+                return NotFound();
+            }
+
+            var advertisementToPatch = _mapper.Map<BookAdvertisementUpdateDto>(advertisementModel);
+            patchDocument.ApplyTo(advertisementToPatch,ModelState);
+
+            if (!TryValidateModel(advertisementToPatch))
+            {
+                return ValidationProblem(ModelState);
+            }
+
+            _mapper.Map(advertisementToPatch, advertisementModel);
+            _bookAdvertisementRepo.UpdateBookAdvertisement(advertisementModel);
+
+            _bookAdvertisementRepo.SaveChanges();
+            return NoContent();
         }
     }
 }
