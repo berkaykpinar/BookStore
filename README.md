@@ -1,10 +1,8 @@
 # BookStore
 Kodluyoruz bitirme projesi
 
-                
-
-
-### Book Store is a basic second-hand book selling site. Made with .Net 5.0 and React.js
+### Book Store is a basic second-hand book selling site. Developed with .Net 5.0 and React.js
+            
 
 + There are two diffent login type : members and admins.
 + Members can open book advertisements. 
@@ -26,3 +24,14 @@ Thus, the author and book will be added and other member can use them in the fut
 + React redux support will be added
 + Library page will be improved.
 + Filtering options will be added.
+
+### Technologies
+## Backend: 
+.Net 5.0 with Entity Framework Core + Mssql.
+
+## Frontend:
+React.js with Semantic Ui,Formik,Axios,React Router Dom.
+
+
+### Database Diagram
+![Screenshot 2021-11-15 003519](https://user-images.githubusercontent.com/83495182/141699521-90b8826e-d963-4132-8bae-ec32cd877384.jpg)
