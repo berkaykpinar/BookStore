@@ -28,4 +28,8 @@ export default class MemberService {
       "https://localhost:44341/api/controller/ContactInfo/" + id
     );
   }
+
+  getAdvertisementsByMemberId(id) {
+    return axios.get("https://localhost:44341/findByMemberId/" + id);
+  }
 }

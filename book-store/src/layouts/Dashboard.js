@@ -37,7 +37,7 @@ const Dashboard = () => {
             <Route exact path="/library" component={LibraryPage} />
             <Route
               exact
-              path="/myadvertisements/:memberId"
+              path="/myadvertisements"
               component={MyAdvertisements}
             />
           </GridColumn>

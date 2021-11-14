@@ -29,7 +29,7 @@ const AdvertisementDetails = () => {
   useEffect(() => {
     let memberService = new MemberService();
     memberService
-      .getContactInfoByInfoId(1)
+      .getContactInfoByInfoId(3)
       .then((val) => setContactInfo(val.data));
   }, []);
 
@@ -114,7 +114,7 @@ const AdvertisementDetails = () => {
               <Icon name="phone" /> {contactInfo.phone}
             </Segment>
             <Segment>
-              <Icon name="telegram" /> {contactInfo.email}
+              <Icon name="telegram" /> {contactInfo.telegram}
             </Segment>
           </Segment.Group>
         </Segment>
