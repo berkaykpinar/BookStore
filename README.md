@@ -12,7 +12,7 @@
 If author or book (or both of them) is not registered in library, members have to have add them. 
 Thus, the author and book will be added and other member can use them in the future.
 + Books and authors are listing in Library page.
-+ Every authors and books have page.
++ Authors and books have individual page.
 + In Author's page, the books whose belongs that author are listing.
 + In book page, The active ads which related to that book are listing.
 
