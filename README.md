@@ -1,5 +1,3 @@
-# BookStore
-Kodluyoruz bitirme projesi
 
 ### Book Store is a basic second-hand book selling site. Developed with .Net 5.0 and React.js
             
