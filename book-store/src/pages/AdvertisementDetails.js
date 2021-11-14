@@ -29,7 +29,7 @@ const AdvertisementDetails = () => {
   useEffect(() => {
     let memberService = new MemberService();
     memberService
-      .getContactInfoByInfoId(3)
+      .getContactInfoByInfoId(1)
       .then((val) => setContactInfo(val.data));
   }, []);
 

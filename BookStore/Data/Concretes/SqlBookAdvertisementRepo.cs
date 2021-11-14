@@ -16,6 +16,11 @@ namespace BookStore.Data.Concretes
             _appDbContext = appDbContext;
         }
 
+        public IEnumerable<BookAdvertisement> GetAwaitingAds()
+        {
+            return _appDbContext.BookAdvertisements.ToList().Where(x => x.IsApproved == false);
+        }
+
         public void CreateBookAdvertisement(BookAdvertisement bookAdvertisement)
         {
             if (bookAdvertisement == null)
@@ -23,13 +28,15 @@ namespace BookStore.Data.Concretes
                 throw new ArgumentNullException("member is null");
             }
 
+            bookAdvertisement.AdStatus = true;
+            bookAdvertisement.IsApproved = false;
            
             _appDbContext.BookAdvertisements.Add(bookAdvertisement);
         }
 
         public IEnumerable<BookAdvertisement> GetAllBookAdvertisements()
         {
-            return _appDbContext.BookAdvertisements.ToList();
+            return _appDbContext.BookAdvertisements.ToList().Where(x => x.AdStatus == true && x.IsApproved== true );
         }
 
         public BookAdvertisement GetBookAdvertisementById(int id)
@@ -51,6 +58,16 @@ namespace BookStore.Data.Concretes
         {
             
             return _appDbContext.BookAdvertisements.ToList().Where(x => x.MemberId==memberId);
+        }
+
+        public void DeleteAdvertisement(BookAdvertisement advertisement)
+        {
+            if (advertisement == null)
+            {
+                throw new ArgumentException(nameof(advertisement));
+            }
+
+            _appDbContext.BookAdvertisements.Remove(advertisement);
         }
     }
 }

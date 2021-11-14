@@ -51,6 +51,18 @@ namespace BookStore.Controllers
 
         }
 
+        [HttpGet("/getAwaitingAds")]
+        public ActionResult<ICollection<BookAdvertisementReadDto>> GetAwaitingAdvertisements()
+        {
+            var adsModel = _bookAdvertisementRepo.GetAwaitingAds();
+            if (adsModel == null)
+            {
+                return NoContent();
+            }
+
+            return Ok(_mapper.Map<ICollection<BookAdvertisementReadDto>>(adsModel));
+        }
+
         [HttpGet(template: "/findByMemberId/{id}", Name = "GetBookAdsByMemberId")]
         public ActionResult<IEnumerable<BookAdvertisementReadDto>> GetBookAdsByMemberId(int id)
         {
@@ -98,6 +110,21 @@ namespace BookStore.Controllers
             _bookAdvertisementRepo.UpdateBookAdvertisement(advertisementModel);
 
             _bookAdvertisementRepo.SaveChanges();
+            return NoContent();
+        }
+
+        [HttpDelete("delete/{adId}")]
+        public ActionResult DeleteAdvertisement(int adId)
+        {
+            var adModel = _bookAdvertisementRepo.GetBookAdvertisementById(adId);
+            if (adModel == null)
+            {
+                return NotFound();
+            }
+
+            _bookAdvertisementRepo.DeleteAdvertisement(adModel);
+            _bookAdvertisementRepo.SaveChanges();
+
             return NoContent();
         }
     }

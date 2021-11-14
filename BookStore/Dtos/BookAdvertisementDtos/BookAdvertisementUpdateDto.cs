@@ -4,7 +4,9 @@ namespace BookStore.Dtos.BookAdvertisementDtos
 {
     public class BookAdvertisementUpdateDto
     {
-        [Required]
+       
         public bool AdStatus { get; set; }
+
+        public bool IsApproved { get; set; }
     }
 }

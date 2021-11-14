@@ -98,6 +98,9 @@ namespace BookStore.Migrations
                     b.Property<string>("Condition")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsApproved")
+                        .HasColumnType("bit");
+
                     b.Property<int>("MemberId")
                         .HasColumnType("int");
 
@@ -188,13 +191,8 @@ namespace BookStore.Migrations
                 {
                     b.HasBaseType("BookStore.Models.UserBase");
 
-                    b.Property<int>("ContactInfoId")
-                        .HasColumnType("int");
-
                     b.Property<int>("Score")
                         .HasColumnType("int");
-
-                    b.HasIndex("ContactInfoId");
 
                     b.HasDiscriminator().HasValue("Member");
                 });
@@ -243,23 +241,12 @@ namespace BookStore.Migrations
             modelBuilder.Entity("BookStore.Models.ContactInfo", b =>
                 {
                     b.HasOne("BookStore.Models.Member", "Member")
-                        .WithMany()
+                        .WithMany("ContactInfo")
                         .HasForeignKey("MemberId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Member");
-                });
-
-            modelBuilder.Entity("BookStore.Models.Member", b =>
-                {
-                    b.HasOne("BookStore.Models.ContactInfo", "ContactInfo")
-                        .WithMany()
-                        .HasForeignKey("ContactInfoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ContactInfo");
                 });
 
             modelBuilder.Entity("BookStore.Models.Author", b =>
@@ -280,6 +267,8 @@ namespace BookStore.Migrations
             modelBuilder.Entity("BookStore.Models.Member", b =>
                 {
                     b.Navigation("Advertisements");
+
+                    b.Navigation("ContactInfo");
                 });
 #pragma warning restore 612, 618
         }

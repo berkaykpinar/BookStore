@@ -7,7 +7,8 @@ namespace BookStore.Models
     {
         public int Score { get; set; }
 
-        public virtual ContactInfo ContactInfo {  get; set; }
+
+        public virtual ICollection<ContactInfo> ContactInfo {  get; set; }
 
         public virtual ICollection<BookAdvertisement> Advertisements { get; set; }
 

@@ -43,11 +43,8 @@ const AuthorPage = () => {
                 </Table.Header>
                 <Table.Body>
                   {books &&
-                    books.map((list) => (
-                      <Table.Row
-                        style={{ marginTop: "10px" }}
-                        key={list.bookId}
-                      >
+                    books.map((list, index) => (
+                      <Table.Row style={{ marginTop: "10px" }} key={index}>
                         <Table.Cell>
                           <Link to={`/bookdetails/${list.bookId}`}>
                             {" "}

@@ -18,6 +18,7 @@ namespace BookStore.Dtos.BookAdvertisementDtos
 
         public double Price { get; set; }
 
+        public bool IsApproved { get; set; }
         public bool AdStatus { get; set; }
 
         public int MemberId { get; set; }

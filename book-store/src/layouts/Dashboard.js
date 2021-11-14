@@ -9,6 +9,7 @@ import AdvertisementDetails from "../pages/AdvertisementDetails";
 import BookDetails from "../pages/BookDetails";
 import LibraryPage from "../pages/LibraryPage";
 import MyAdvertisements from "../pages/MyAdvertisements";
+import AwaitingApproval from "../pages/AwaitingApproval";
 
 const Dashboard = () => {
   return (
@@ -39,6 +40,11 @@ const Dashboard = () => {
               exact
               path="/myadvertisements"
               component={MyAdvertisements}
+            />
+            <Route
+              exact
+              path="/awaitingapproval"
+              component={AwaitingApproval}
             />
           </GridColumn>
         </Grid.Row>

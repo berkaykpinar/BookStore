@@ -11,10 +11,14 @@ namespace BookStore.Data.Abstracts
 
         IEnumerable<BookAdvertisement> GetAllBookAdvertisements();
 
+        IEnumerable<BookAdvertisement> GetAwaitingAds();
+
         void CreateBookAdvertisement(BookAdvertisement bookAdvertisement);
 
         public void UpdateBookAdvertisement(BookAdvertisement bookAdvertisement);
 
         public IEnumerable<BookAdvertisement> GetBookAdsByMemberId(int  memberId);
+
+        public void DeleteAdvertisement(BookAdvertisement advertisement);
     }
 }

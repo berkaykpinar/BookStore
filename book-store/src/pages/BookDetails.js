@@ -34,11 +34,8 @@ const BookDetails = () => {
                 </Table.Header>
                 <Table.Body>
                   {ads &&
-                    ads.map((list) => (
-                      <Table.Row
-                        style={{ marginTop: "10px" }}
-                        key={list.bookId}
-                      >
+                    ads.map((list, index) => (
+                      <Table.Row style={{ marginTop: "10px" }} key={index}>
                         <Table.Cell>
                           <Link
                             to={`/advertisementDetails/${list.memberId}/${list.bookAdvertisementId}`}

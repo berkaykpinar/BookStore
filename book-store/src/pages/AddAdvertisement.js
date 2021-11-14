@@ -77,7 +77,6 @@ const AddAdvertisement = () => {
       bookId: -1,
       condition: "",
       price: 0,
-      adStatus: false,
       memberId: -1,
     },
     onSubmit: async (value) => {
@@ -148,8 +147,8 @@ const AddAdvertisement = () => {
                 </Button>
               </Label>
             ) : (
-              authors.map((list) => (
-                <Table.Row style={{ marginTop: "10px" }} key={list.authorId}>
+              authors.map((list, index) => (
+                <Table.Row style={{ marginTop: "10px" }} key={index}>
                   <Table.Cell>{list.authorId}</Table.Cell>
                   <Table.Cell>{list.authorName}</Table.Cell>
                   <Table.Cell>{list.description}</Table.Cell>
@@ -216,6 +215,7 @@ const AddAdvertisement = () => {
                 <Table.HeaderCell>Book Title</Table.HeaderCell>
                 <Table.HeaderCell>About Book</Table.HeaderCell>
                 <Table.HeaderCell>Author Id</Table.HeaderCell>
+                <Table.HeaderCell>Select the Book</Table.HeaderCell>
               </Table.Row>
             </Table.Header>
             <Table.Body>
@@ -234,8 +234,8 @@ const AddAdvertisement = () => {
                   </Button>
                 </Label>
               ) : (
-                books.map((list) => (
-                  <Table.Row style={{ marginTop: "10px" }} key={list.bookId}>
+                books.map((list, index) => (
+                  <Table.Row style={{ marginTop: "10px" }} key={index}>
                     <Table.Cell>{list.bookId}</Table.Cell>
                     <Table.Cell>{list.title}</Table.Cell>
                     <Table.Cell>{list.description}</Table.Cell>

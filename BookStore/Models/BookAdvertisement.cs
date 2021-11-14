@@ -16,6 +16,8 @@ namespace BookStore.Models
 
         public bool AdStatus {  get; set; }
 
+        public bool IsApproved {  get; set; }
+
         [ForeignKey("Member")]
         public int MemberId {  get; set; }
         public virtual Member Member {  get; set; }

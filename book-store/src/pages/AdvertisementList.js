@@ -67,11 +67,8 @@ const AdvertisementList = () => {
               </Table.Row>
             </Table.Header>
             <Table.Body>
-              {advertisementList.map((list) => (
-                <Table.Row
-                  style={{ marginTop: "10px" }}
-                  key={list.bookAdvertisementId}
-                >
+              {advertisementList.map((list, index) => (
+                <Table.Row style={{ marginTop: "10px" }} key={index}>
                   <Table.Cell>
                     <Link
                       to={`/advertisementDetails/${list.member.id}/${list.bookAdvertisementId}`}

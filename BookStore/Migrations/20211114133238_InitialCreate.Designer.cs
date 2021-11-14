@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookStore.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20211108221354_InitialCreate")]
+    [Migration("20211114133238_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -100,6 +100,9 @@ namespace BookStore.Migrations
                     b.Property<string>("Condition")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsApproved")
+                        .HasColumnType("bit");
+
                     b.Property<int>("MemberId")
                         .HasColumnType("int");
 
@@ -136,8 +139,7 @@ namespace BookStore.Migrations
 
                     b.HasKey("ContactInfoId");
 
-                    b.HasIndex("MemberId")
-                        .IsUnique();
+                    b.HasIndex("MemberId");
 
                     b.ToTable("ContactInfos");
                 });
@@ -241,8 +243,8 @@ namespace BookStore.Migrations
             modelBuilder.Entity("BookStore.Models.ContactInfo", b =>
                 {
                     b.HasOne("BookStore.Models.Member", "Member")
-                        .WithOne("Contact")
-                        .HasForeignKey("BookStore.Models.ContactInfo", "MemberId")
+                        .WithMany("ContactInfo")
+                        .HasForeignKey("MemberId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -268,7 +270,7 @@ namespace BookStore.Migrations
                 {
                     b.Navigation("Advertisements");
 
-                    b.Navigation("Contact");
+                    b.Navigation("ContactInfo");
                 });
 #pragma warning restore 612, 618
         }

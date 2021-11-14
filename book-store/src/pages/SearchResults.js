@@ -40,8 +40,8 @@ const SearchResults = () => {
               </Table.Row>
             </Table.Header>
             <Table.Body>
-              {bookList.map((list) => (
-                <Table.Row style={{ marginTop: "10px" }} key={list.bookId}>
+              {bookList.map((list, index) => (
+                <Table.Row style={{ marginTop: "10px" }} key={index}>
                   <Table.Cell>
                     <Link to={`/bookdetails/${list.bookId}`}>
                       {" "}

@@ -27,6 +27,11 @@ const Navi = () => {
           <Menu.Item>
             <Link to="/library">Library</Link>
           </Menu.Item>
+          {isLoggedIn && userType == 1 && (
+            <Menu.Item>
+              <Link to="/awaitingapproval">Awaiting Approval</Link>
+            </Menu.Item>
+          )}
 
           {isLoggedIn && userType == 2 && (
             <Menu.Item>

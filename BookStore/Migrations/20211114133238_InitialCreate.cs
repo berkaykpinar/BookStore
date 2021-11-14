@@ -113,6 +113,7 @@ namespace BookStore.Migrations
                     Condition = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Price = table.Column<double>(type: "float", nullable: false),
                     AdStatus = table.Column<bool>(type: "bit", nullable: false),
+                    IsApproved = table.Column<bool>(type: "bit", nullable: false),
                     MemberId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -155,8 +156,7 @@ namespace BookStore.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_ContactInfos_MemberId",
                 table: "ContactInfos",
-                column: "MemberId",
-                unique: true);
+                column: "MemberId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
