@@ -4,11 +4,11 @@ Kodluyoruz bitirme projesi
                 
 
 
-###Book Store is a basic second-hand book selling site. Made with .Net 5.0 and React.js
+### Book Store is a basic second-hand book selling site. Made with .Net 5.0 and React.js
 
-+There are two diffent login type : members and admins.
-+Members can open book advertisements. 
-+The ads can be listed after Admins approve the ad.
++ There are two diffent login type : members and admins.
++ Members can open book advertisements. 
++ The ads can be listed after Admins approve the ad.
 +After a member added a new ad on system, this ad will be listed in Admin's Awaiting Approval Page. 
 +Approval processes are listing on Approval logs page with process details like Admin Id,date etc.
 +Making ads active or inactive is possible for Members also Members can delete their ads.
