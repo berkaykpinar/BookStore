@@ -23,10 +23,10 @@ namespace BookStore.Controllers
 
         }
 
-        [HttpGet("{id}",Name = "GetProcessesByAdminId")]
-        public ActionResult<IEnumerable<ApprovalProcessReadDto>> GetProcessesByAdminId(int id)
+        [HttpGet]
+        public ActionResult<IEnumerable<ApprovalProcessReadDto>> GetAllProcesses()
         {
-            var processList = _processRepo.GetProcessByAdminId(id);
+            var processList = _processRepo.GetAllProcesses();
             if (processList == null)
             {
                 return NotFound();

@@ -32,6 +32,11 @@ const Navi = () => {
               <Link to="/awaitingapproval">Awaiting Approval</Link>
             </Menu.Item>
           )}
+          {isLoggedIn && userType == 1 && (
+            <Menu.Item>
+              <Link to="/approvalLogs">Approval Logs</Link>
+            </Menu.Item>
+          )}
 
           {isLoggedIn && userType == 2 && (
             <Menu.Item>
@@ -62,7 +67,6 @@ const Navi = () => {
           {isLoggedIn ? (
             <Menu.Item position="right">
               <Link onClick={() => SetIsLoggedIn(false)} to="/">
-                {" "}
                 Log Out
               </Link>
             </Menu.Item>

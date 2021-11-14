@@ -25,33 +25,14 @@ const AdvertisementList = () => {
       .then((values) => setAdvertisementList(values.data));
   }, []);
 
-  // async function getBook(id) {
-  //   const response = await memberservive.getBookDetail(id);
-  //   console.log(response.data.title);
-  //   return response.data.title;
-  // }
-
   return (
     <div>
       <Grid>
         <GridColumn width={4}>
           <Menu pointing vertical>
             <Menu.Item name="inbox">
-              <Label color="teal">1</Label>
-              Inbox
-            </Menu.Item>
-
-            <Menu.Item name="spam">
-              <Label>51</Label>
-              Spam
-            </Menu.Item>
-
-            <Menu.Item name="updates">
-              <Label>1</Label>
-              Updates
-            </Menu.Item>
-            <Menu.Item>
-              <Input icon="search" placeholder="Search mail..." />
+              <Label color="teal">{`${advertisementList.length}`}</Label>
+              Active Ad Number
             </Menu.Item>
           </Menu>
         </GridColumn>

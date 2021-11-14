@@ -10,6 +10,7 @@ import BookDetails from "../pages/BookDetails";
 import LibraryPage from "../pages/LibraryPage";
 import MyAdvertisements from "../pages/MyAdvertisements";
 import AwaitingApproval from "../pages/AwaitingApproval";
+import ApprovalLog from "../pages/ApprovalLog";
 
 const Dashboard = () => {
   return (
@@ -46,6 +47,7 @@ const Dashboard = () => {
               path="/awaitingapproval"
               component={AwaitingApproval}
             />
+            <Route exact path="/approvalLogs" component={ApprovalLog} />
           </GridColumn>
         </Grid.Row>
       </Grid>

@@ -48,11 +48,11 @@ const AddBook = ({ handleBookForm, authorId }) => {
         </Form.Field>
 
         <Form.Field>
-          <Label>Author Id </Label>
+          {/* <Label>Author Id </Label> */}
           <Input
+            type="hidden"
             id="authorId"
             name="authorId"
-            type="number"
             onChange={formik.handleChange}
             value={formik.values.authorId}
           />

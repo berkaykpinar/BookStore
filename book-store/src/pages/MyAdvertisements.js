@@ -10,6 +10,7 @@ import {
   Button,
   Form,
   Input,
+  Tab,
 } from "semantic-ui-react";
 import { Link, useHistory } from "react-router-dom";
 import { Formik, useFormik } from "formik";
@@ -75,6 +76,7 @@ const MyAdvertisements = () => {
                 <Table.HeaderCell>Book Condition</Table.HeaderCell>
                 <Table.HeaderCell>Price</Table.HeaderCell>
                 <Table.HeaderCell>Status</Table.HeaderCell>
+                <Table.HeaderCell>Is Approved</Table.HeaderCell>
                 <Table.HeaderCell>Close the Ad</Table.HeaderCell>
                 <Table.HeaderCell>Open the Ad</Table.HeaderCell>
                 <Table.HeaderCell>Delete the Ad</Table.HeaderCell>
@@ -99,6 +101,9 @@ const MyAdvertisements = () => {
                       {`${list.adStatus}` == "true" ? "Active" : "Inactive"}
                     </Table.Cell>
                     <Table.Cell>
+                      {`${list.isApproved}` == "true" ? "Yes" : "No"}
+                    </Table.Cell>
+                    <Table.Cell>
                       {/* <Form onSubmit={formik.handleSubmit}> </Form> */}
                       <Button
                         type="submit"
@@ -109,6 +114,7 @@ const MyAdvertisements = () => {
                     </Table.Cell>
                     <Table.Cell>
                       <Button
+                        positive
                         onClick={() => handleTrue(list.bookAdvertisementId)}
                       >
                         Open

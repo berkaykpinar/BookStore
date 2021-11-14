@@ -21,4 +21,20 @@ export default class AdminService {
         }
       });
   }
+  addApprovalProcess(process) {
+    return axios.post(
+      "https://localhost:44341/api/controller/process",
+      process
+    );
+  }
+
+  getApprovalProcess() {
+    return axios.get("https://localhost:44341/api/controller/process");
+  }
+
+  deleteAdvertisement(id) {
+    return axios.delete(
+      "https://localhost:44341/api/controller/bookadvertisement/delete/" + id
+    );
+  }
 }

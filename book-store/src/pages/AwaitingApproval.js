@@ -1,14 +1,19 @@
 import { useEffect, useState } from "react";
 import AdminService from "../services/AdminService";
 import { Table, Icon, Button } from "semantic-ui-react";
-import { Link } from "react-router-dom";
-const AwaitingApproval = () => {
-  const [awaitingAds, setAwaitingAds] = useState([]);
+import { Link, useHistory } from "react-router-dom";
 
+const AwaitingApproval = () => {
+  let adminId = 2;
+  const [awaitingAds, setAwaitingAds] = useState([]);
+  const [result, setResult] = useState(false);
+
+  let history = useHistory();
   useEffect(() => {
     let adminService = new AdminService();
     adminService.getAwaitingAds().then((value) => setAwaitingAds(value.data));
   }, []);
+
   let trueObj = [
     {
       operationType: "0",
@@ -17,10 +22,30 @@ const AwaitingApproval = () => {
       value: "true",
     },
   ];
+
+  let process = {
+    date: "01-01-2021",
+    processResult: result,
+    adminId: adminId,
+  };
+
   let handleApprove = (id) => {
     let adminService = new AdminService();
+    setResult(true);
     adminService.updateApprovalStatus(id, trueObj);
+    adminService.addApprovalProcess(process);
+    history.push("/awaitingapproval");
   };
+
+  let handleDelete = (id) => {
+    let adminService = new AdminService();
+    setResult(false);
+    adminService.deleteAdvertisement(id);
+
+    adminService.addApprovalProcess(process);
+    history.push("/awaitingapproval");
+  };
+
   console.log(awaitingAds);
   return (
     <div>
@@ -35,6 +60,7 @@ const AwaitingApproval = () => {
             <Table.HeaderCell singleLine>Seller's Nick Name</Table.HeaderCell>
             <Table.HeaderCell singleLine>Seller's email</Table.HeaderCell>
             <Table.HeaderCell>Approve</Table.HeaderCell>
+            <Table.HeaderCell>Delete</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
         <Table.Body>
@@ -58,6 +84,14 @@ const AwaitingApproval = () => {
                     onClick={() => handleApprove(list.bookAdvertisementId)}
                   >
                     Approve
+                  </Button>
+                </Table.Cell>
+                <Table.Cell>
+                  <Button
+                    negative
+                    onClick={() => handleDelete(list.bookAdvertisementId)}
+                  >
+                    Delete
                   </Button>
                 </Table.Cell>
               </Table.Row>
