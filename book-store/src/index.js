@@ -5,6 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 
+//redux eklenecek
 ReactDOM.render(
   <BrowserRouter>
     <App />
