@@ -9,6 +9,8 @@ namespace BookStore.Models
         [Key]
         public int ProcessId {  get; set; }
 
+
+
         public string Date {  get; set; }
 
         public string ProcessResult {  get; set; }
