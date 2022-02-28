@@ -22,9 +22,7 @@ namespace BookStore.Models
         [Required]
         public string UserType {  get; set; }
 
-       
-
-        
+        public bool isEmailConfirmed { get; set; }
 
 
     }

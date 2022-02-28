@@ -72,19 +72,26 @@ const Navi = () => {
             </Menu.Item>
           ) : (
             <Menu.Item position="right">
-              <Button
-                onClick={() => handleLogin()}
-                content="Login"
-                primary
-                style={{ marginRight: "10px" }}
-              />
+              <Link to="/login">
+                <Button
+                  onClick={() => handleLogin()}
+                  content="Login"
+                  primary
+                  style={{ marginRight: "10px" }}
+                />
+              </Link>
+
               <Button
                 onClick={() => handleAdminLogin()}
                 content="Admin Login"
                 primary
                 style={{ marginRight: "10px" }}
               />
-              <Button content="Register" secondary />
+              <Button secondary>
+                <Link to="/register" style={{ color: "white" }}>
+                  Register
+                </Link>
+              </Button>
             </Menu.Item>
           )}
         </Container>

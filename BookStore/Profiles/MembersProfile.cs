@@ -9,6 +9,7 @@ namespace BookStore.Profiles
         {
             CreateMap<MemberCreateDto, Member>();
             CreateMap<Member, MemberReadDto>();
+            CreateMap<MemberValidateDto, Member>();
         }
     }
 }

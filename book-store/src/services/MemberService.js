@@ -1,6 +1,17 @@
 import axios from "axios";
 
 export default class MemberService {
+  addMember(member) {
+    return axios.post("https://localhost:44341/api/controller", member);
+  }
+
+  validateMember(memberInfo) {
+    return axios
+      .post("https://localhost:44341/api/controller/auth", memberInfo)
+      .then((response) => console.log(response.data))
+      .catch((err) => console.log(err.response.data));
+  }
+
   getBookAdvertisementList() {
     return axios.get(
       "https://localhost:44341/api/controller/bookadvertisement"

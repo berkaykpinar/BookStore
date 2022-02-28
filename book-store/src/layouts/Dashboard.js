@@ -11,6 +11,8 @@ import LibraryPage from "../pages/LibraryPage";
 import MyAdvertisements from "../pages/MyAdvertisements";
 import AwaitingApproval from "../pages/AwaitingApproval";
 import ApprovalLog from "../pages/ApprovalLog";
+import Register from "../pages/Register";
+import Login from "../pages/Login";
 
 const Dashboard = () => {
   return (
@@ -48,6 +50,8 @@ const Dashboard = () => {
               component={AwaitingApproval}
             />
             <Route exact path="/approvalLogs" component={ApprovalLog} />
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/login" component={Login} />
           </GridColumn>
         </Grid.Row>
       </Grid>

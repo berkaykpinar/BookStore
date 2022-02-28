@@ -18,6 +18,6 @@ namespace BookStore.Dtos.MemberDtos
         [Required]
         public string Password { get; set; }
 
-
+        public bool isEmailConfirmed { get; set; }
     }
 }

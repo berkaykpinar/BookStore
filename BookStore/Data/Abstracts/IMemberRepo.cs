@@ -1,6 +1,8 @@
 ﻿using BookStore.Models;
 using System.Collections;
 using System.Collections.Generic;
+using BookStore.Dtos.MemberDtos;
+using Microsoft.AspNetCore.Authentication;
 
 namespace BookStore.Data.Abstracts
 {
@@ -14,6 +16,8 @@ namespace BookStore.Data.Abstracts
 
         void CreateMember(Member member);
 
+        
+        MemberReadDto Authenticate(string username, string password);
 
     }
 }

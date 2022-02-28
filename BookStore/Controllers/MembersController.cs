@@ -28,14 +28,31 @@ namespace BookStore.Controllers
         public ActionResult<MemberCreateDto> CreateMember(MemberCreateDto memberCreateDto)
         {
             var memberModel=_mapper.Map<Member>(memberCreateDto);
-            memberModel.UserType = "2";
-            memberModel.Score = 0;
+            
+            
             //memberModel.Contact.ContactInfoId=memberCreateDto.Id;
             repo.CreateMember(memberModel);
             repo.SaveChanges();
             
             
-            return Ok(memberModel);
+            return Ok("memberModel");
+        }
+
+        [Route("auth")]
+        [HttpPost]
+        public ActionResult<MemberReadDto> Authentication(MemberValidateDto member)
+        {
+           var result= repo.Authenticate(member.NickName, member.Password);
+
+           if (result == null)
+           {
+               return NotFound("Member is can not found");
+           }
+           else
+           {
+               return Ok(result);
+           }
+
         }
 
         [HttpGet]
