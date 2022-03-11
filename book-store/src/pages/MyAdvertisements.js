@@ -17,7 +17,7 @@ import { Formik, useFormik } from "formik";
 
 const MyAdvertisements = () => {
   //redux eklenince gerek kalmayacal
-  let memberId = 1;
+  let memberId = 2;
   const [adsList, setAdsList] = useState([]);
   const [selectedAd, setSelectedAd] = useState(-1);
   const history = useHistory();

@@ -17,7 +17,7 @@ namespace BookStore.Data.Abstracts
         void CreateMember(Member member);
 
         
-        MemberReadDto Authenticate(string username, string password);
+        MemberReadDto Validate(string username, string password);
 
     }
 }

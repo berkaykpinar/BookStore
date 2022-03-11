@@ -1,15 +1,25 @@
 import axios from "axios";
-
+let localhost = "localhost:5001";
 export default class AdminService {
-  getAwaitingAds() {
-    return axios.get("https://localhost:44341/getAwaitingAds");
+  getAwaitingAds(token) {
+    const authAxios = axios.create({
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return authAxios.get(`https://${localhost}/getAwaitingAds`).catch((err) => {
+      if (err.request) {
+        console.log(err.request);
+      }
+    });
   }
 
   updateApprovalStatus(id, patch) {
     console.log(patch);
     return axios
       .patch(
-        `https://localhost:44341/api/controller/bookadvertisement/${id}`,
+        `https://${localhost}/api/controller/bookadvertisement/${id}`,
         patch
       )
       .catch((err) => {
@@ -22,19 +32,16 @@ export default class AdminService {
       });
   }
   addApprovalProcess(process) {
-    return axios.post(
-      "https://localhost:44341/api/controller/process",
-      process
-    );
+    return axios.post(`ttps://${localhost}/api/controller/process`, process);
   }
 
   getApprovalProcess() {
-    return axios.get("https://localhost:44341/api/controller/process");
+    return axios.get(`https://${localhost}/api/controller/process`);
   }
 
   deleteAdvertisement(id) {
     return axios.delete(
-      "https://localhost:44341/api/controller/bookadvertisement/delete/" + id
+      `https://${localhost}/api/controller/bookadvertisement/delete/` + id
     );
   }
 }

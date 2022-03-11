@@ -1,54 +1,54 @@
 import axios from "axios";
 
+let localhost = "localhost:5001";
+
 export default class MemberService {
   addMember(member) {
-    return axios.post("https://localhost:44341/api/controller", member);
+    return axios.post(`https://${localhost}/api/controller`, member);
   }
 
   validateMember(memberInfo) {
     return axios
-      .post("https://localhost:44341/api/controller/auth", memberInfo)
+      .post(`https://${localhost}/api/controller/auth`, memberInfo)
       .then((response) => console.log(response.data))
-      .catch((err) => console.log(err.response.data));
+      .catch((err) => {
+        return err.response.data;
+      });
   }
 
   getBookAdvertisementList() {
-    return axios.get(
-      "https://localhost:44341/api/controller/bookadvertisement"
-    );
+    return axios.get(`https://${localhost}/api/controller/bookadvertisement`);
   }
 
   addBookAdvertisement(bookAd) {
     return axios.post(
-      "https://localhost:44341/api/controller/bookadvertisement",
+      `https://${localhost}/api/controller/bookadvertisement`,
       bookAd
     );
   }
   getMemberById(memberId) {
-    return axios.get("https://localhost:44341/findByMemberId/" + memberId);
+    return axios.get(`https://${localhost}/findByMemberId/` + memberId);
   }
 
   getAdvertisementByAdId(adId) {
     return axios.get(
-      "https://localhost:44341/api/controller/bookadvertisement/" + adId
+      `https://${localhost}/api/controller/bookadvertisement/` + adId
     );
   }
 
   getContactInfoByInfoId(id) {
-    return axios.get(
-      "https://localhost:44341/api/controller/ContactInfo/" + id
-    );
+    return axios.get(`https://${localhost}//api/controller/ContactInfo/` + id);
   }
 
   getAdvertisementsByMemberId(id) {
-    return axios.get("https://localhost:44341/findByMemberId/" + id);
+    return axios.get(`https://${localhost}//findByMemberId/` + id);
   }
 
   updateAdStatus(id, patch) {
     console.log(patch);
     return axios
       .patch(
-        `https://localhost:44341/api/controller/bookadvertisement/${id}`,
+        `https://${localhost}/api/controller/bookadvertisement/${id}`,
         patch
       )
       .catch((err) => {
@@ -63,7 +63,7 @@ export default class MemberService {
 
   deleteAdvertisement(id) {
     return axios.delete(
-      "https://localhost:44341/api/controller/bookadvertisement/delete/" + id
+      `https://${localhost}/api/controller/bookadvertisement/delete/` + id
     );
   }
 }

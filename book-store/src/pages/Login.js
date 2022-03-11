@@ -1,6 +1,13 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { Button, Card, Checkbox, Form, Input } from "semantic-ui-react";
+import {
+  Button,
+  Card,
+  Checkbox,
+  Form,
+  Input,
+  Message,
+} from "semantic-ui-react";
 import MemberService from "../services/MemberService";
 
 const Login = () => {
@@ -8,6 +15,7 @@ const Login = () => {
   const [nickName, setNickName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   let info = {
     nickName: nickName,
@@ -16,10 +24,22 @@ const Login = () => {
   };
   let memberService = new MemberService();
 
-  let handleRegister = async () => {
-    let result = await memberService.validateMember(info);
-    // alert("Your account successfully added");
-    //history.push("/");
+  let handleLogin = async () => {
+    let result = await memberService
+      .validateMember(info)
+      .catch((res) => console.log(res));
+    console.log(result);
+
+    // if (result.includes("Username or password is incorrect")) {
+    //   setErrorMessage("Username or password is incorrect");
+    // }
+
+    // if (result.includes("Your email is not verified yet")) {
+    //   setErrorMessage("Your email is not verified yet");
+    // }
+    alert("Your account successfully added");
+
+    history.push("/");
   };
 
   return (
@@ -46,10 +66,11 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </Form.Field>
-        <Form.Field>
+        {/* <Form.Field>
           <Checkbox label="I agree to the Terms and Conditions" />
-        </Form.Field>
-        <Button type="submit" onClick={() => handleRegister()}>
+        </Form.Field> */}
+        {errorMessage.length > 0 && <Message negative>{errorMessage}</Message>}
+        <Button type="submit" onClick={() => handleLogin()}>
           Submit
         </Button>
       </Form>

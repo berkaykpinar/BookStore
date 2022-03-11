@@ -18,7 +18,7 @@ import AddAuthor from "./AddAuthor";
 import AddBook from "./AddBook";
 
 const AddAdvertisement = () => {
-  let memberId = 1;
+  let memberId = 2;
 
   let history = useHistory();
 

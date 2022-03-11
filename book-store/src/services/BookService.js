@@ -1,31 +1,30 @@
 import axios from "axios";
-
+let localhost = "localhost:5001";
 export default class BookService {
   getBooksByName(word) {
-    return axios.get("https://localhost:44341/searchBooks/" + word);
-    console.log(axios.get("https://localhost:44341/searchBooks/" + word));
+    return axios.get(`https://${localhost}/searchBooks/` + word);
   }
 
   getBookByBookId(bookId) {
-    return axios.get("https://localhost:44341/api/controller/book/" + bookId);
+    return axios.get(`https://${localhost}/api/controller/book/` + bookId);
   }
   addBook(book) {
-    return axios.post("https://localhost:44341/api/controller/book", book);
+    return axios.post(`https://${localhost}/api/controller/book`, book);
   }
 
   getAuthorsByName(word) {
-    return axios.get("https://localhost:44341/authors/" + word);
+    return axios.get(`https://${localhost}/authors/` + word);
   }
 
   getAuthorById(id) {
-    return axios.get("https://localhost:44341/api/controller/author/" + id);
+    return axios.get(`https://${localhost}/api/controller/author/` + id);
   }
 
   addAuthor(author) {
-    return axios.post("https://localhost:44341/api/controller/author", author);
+    return axios.post(`https://${localhost}/api/controller/author`, author);
   }
 
   getAllBooks() {
-    return axios.get("https://localhost:44341/api/controller/book");
+    return axios.get(`https://${localhost}/api/controller/book`);
   }
 }

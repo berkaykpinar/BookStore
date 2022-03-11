@@ -3,12 +3,14 @@ using AutoMapper;
 using BookStore.Data.Abstracts;
 using BookStore.Dtos.BookAdvertisementDtos;
 using BookStore.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookStore.Controllers
 {
+    [Authorize]
     [EnableCors("CorsPolicy")]
     [ApiController]
     [Route("api/controller/bookadvertisement")]
@@ -22,7 +24,8 @@ namespace BookStore.Controllers
             _bookAdvertisementRepo = bookAdvertisementRepo;
             _mapper = mapper;
         }
-
+        
+        [AllowAnonymous]
         [HttpGet]
         public ActionResult<ICollection<BookAdvertisementReadDto>> GetAllBooks()
         {
@@ -37,6 +40,7 @@ namespace BookStore.Controllers
             
             
         }
+        [AllowAnonymous]
         [HttpGet(template:"{id}",Name = "GetBookAdvertisement")]
         public ActionResult<BookAdvertisementReadDto> GetBookAdvertisement(int id)
         {
@@ -62,7 +66,7 @@ namespace BookStore.Controllers
 
             return Ok(_mapper.Map<ICollection<BookAdvertisementReadDto>>(adsModel));
         }
-
+        [AllowAnonymous]
         [HttpGet(template: "/findByMemberId/{id}", Name = "GetBookAdsByMemberId")]
         public ActionResult<IEnumerable<BookAdvertisementReadDto>> GetBookAdsByMemberId(int id)
         {
@@ -77,6 +81,7 @@ namespace BookStore.Controllers
 
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public ActionResult<BookAdvertisementReadDto> CreateBookAdvertisement(BookAdvertisementCreateDto bookAdvertisementCreateDto)
         {
@@ -89,6 +94,7 @@ namespace BookStore.Controllers
                 return Ok(bookAd);
         }
 
+        [AllowAnonymous]
         [HttpPatch("{id}",Name = "PartialAdvertisementUpdate")]
         public ActionResult PartialAdvertisementUpdate(int id, JsonPatchDocument<BookAdvertisementUpdateDto> patchDocument)
         {
@@ -113,6 +119,7 @@ namespace BookStore.Controllers
             return NoContent();
         }
 
+        [AllowAnonymous]
         [HttpDelete("delete/{adId}")]
         public ActionResult DeleteAdvertisement(int adId)
         {

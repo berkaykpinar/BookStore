@@ -3,15 +3,20 @@ import AdminService from "../services/AdminService";
 import { Table, Icon, Button } from "semantic-ui-react";
 import { Link, useHistory } from "react-router-dom";
 
+const token =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6InN0cmluZyIsIm5iZiI6MTY0NzAyNzk0NywiZXhwIjoxNjQ3MDQ1OTQ3LCJpYXQiOjE2NDcwMjc5NDd9.GS20N808CHNNaT0Ma1jOFg5M6wFpyLjUB72cl4mC1f0";
 const AwaitingApproval = () => {
-  let adminId = 2;
+  let adminId = 1;
   const [awaitingAds, setAwaitingAds] = useState([]);
   const [result, setResult] = useState(false);
 
   let history = useHistory();
-  useEffect(() => {
+  useEffect(async () => {
     let adminService = new AdminService();
-    adminService.getAwaitingAds().then((value) => setAwaitingAds(value.data));
+    adminService
+      .getAwaitingAds(token)
+      .then((value) => setAwaitingAds(value.data))
+      .catch((err) => console.log(err.data));
   }, []);
 
   let trueObj = [
