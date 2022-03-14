@@ -25,7 +25,9 @@ namespace BookStore.JwtAuthentication
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Name,username)
+                    new Claim(ClaimTypes.Name,username),
+                    new Claim(ClaimTypes.Role,"Admin")
+                    
                 }),
                 Expires = DateTime.UtcNow.AddHours(5),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(tokenKey),SecurityAlgorithms.HmacSha256Signature)
