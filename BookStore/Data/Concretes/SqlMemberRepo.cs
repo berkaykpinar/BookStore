@@ -4,11 +4,13 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using AutoMapper;
 using BookStore.Dtos.MemberDtos;
 using BookStore.JwtAuthentication;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using BCryptNet = BCrypt.Net.BCrypt;
 
 namespace BookStore.Data.Concretes
@@ -42,6 +44,9 @@ namespace BookStore.Data.Concretes
         public MemberReadDto Validate(string member, string password)
         {
             var user = _appDbContext.Members.FirstOrDefault(x => x.NickName == member);
+
+            var hashedPass = BCryptNet.HashPassword(password, 10);
+
             if (user == null || !BCryptNet.Verify(password,user.Password))
             {
                 throw new ArgumentException("Username or password is incorrect" );

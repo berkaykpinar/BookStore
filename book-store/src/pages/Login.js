@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import AuthContext from "../context/AuthProvider";
 import { useHistory } from "react-router-dom";
 import {
   Button,
@@ -11,6 +12,8 @@ import {
 import MemberService from "../services/MemberService";
 
 const Login = () => {
+  const { setAuth } = useContext(AuthContext);
+
   let history = useHistory();
   const [nickName, setNickName] = useState("");
   const [email, setEmail] = useState("");
@@ -22,29 +25,34 @@ const Login = () => {
     email: email,
     password: password,
   };
-  let memberService = new MemberService();
 
   let handleLogin = async () => {
-    n;
+    let memberService = new MemberService();
     const response = await memberService
       .validateMember(info)
       .then((res) => {
-        return res.data;
+        return res;
       })
       .catch((err) => {
         return err.response.data;
       });
+    console.log(typeof response);
 
-    if (response.includes("Username or password is incorrect")) {
+    if (typeof response == "string") {
       alert("Username or password is incorrect");
-    } else if (response.includes("Your email is not verified yet")) {
-      alert("Your email is not verified yet");
-    } else {
+    }
+    // else if (response.includes("Your email is not verified yet")) {
+    //   alert("Your email is not verified yet");
+    // }
+    else {
       alert("You successfully logged in");
       history.push("/");
     }
+    const accessToken = response?.data?.accessToken;
+    const roles = response?.data?.role;
+    const userId = response?.data?.userId;
     console.log(response);
-
+    setAuth({ nickName, roles, accessToken });
     setNickName("");
     setPassword("");
     // if (result.includes("Username or password is incorrect")) {

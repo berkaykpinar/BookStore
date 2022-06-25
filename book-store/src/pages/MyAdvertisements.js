@@ -22,9 +22,9 @@ const MyAdvertisements = () => {
   const [selectedAd, setSelectedAd] = useState(-1);
   const history = useHistory();
 
-  useEffect(() => {
+  useEffect(async () => {
     let memberService = new MemberService();
-    memberService
+    await memberService
       .getAdvertisementsByMemberId(memberId)
       .then((e) => setAdsList(e.data));
   });
