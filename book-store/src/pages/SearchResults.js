@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useHistory, Link } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import BookService from "../services/BookService";
 import {
   Header,
@@ -16,7 +16,7 @@ import {
 const SearchResults = () => {
   let { word } = useParams();
 
-  let history = useHistory();
+  let history = useNavigate();
   const [bookList, setBookList] = useState([]);
 
   useEffect((e) => {

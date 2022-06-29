@@ -10,6 +10,7 @@ namespace BookStore.Profiles
              CreateMap<AdminCreateDto, Admin>();
              CreateMap<Admin, AdminReadDto>();
              CreateMap<Admin, AdminApprovalDto>();
+             CreateMap<AdminValidateDto,Admin>();
         }
     }
 }

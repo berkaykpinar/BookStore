@@ -12,22 +12,26 @@ import {
   Input,
   Tab,
 } from "semantic-ui-react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Formik, useFormik } from "formik";
+import useAuth from "../hooks/useAuth";
 
 const MyAdvertisements = () => {
-  //redux eklenince gerek kalmayacal
-  let memberId = 2;
+  const { member } = useAuth();
+  let memberId;
+  member?.userId != undefined ? (memberId = member.userId) : (memberId = 1);
+
+  console.log(memberId);
   const [adsList, setAdsList] = useState([]);
   const [selectedAd, setSelectedAd] = useState(-1);
-  const history = useHistory();
+  const history = useNavigate();
 
   useEffect(async () => {
     let memberService = new MemberService();
     await memberService
       .getAdvertisementsByMemberId(memberId)
       .then((e) => setAdsList(e.data));
-  });
+  }, []);
 
   let trueObj = [
     {

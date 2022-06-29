@@ -3,11 +3,13 @@ using AutoMapper;
 using BookStore.Data.Abstracts;
 using BookStore.Dtos.ProcessDtos;
 using BookStore.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookStore.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [EnableCors("CorsPolicy")]
     [ApiController]
     [Route("/api/controller/process")]

@@ -45,4 +45,12 @@ export default class AdminService {
       `https://${localhost}/api/controller/bookadvertisement/delete/` + id
     );
   }
+
+  validateAdmin(admin) {
+    return axios.post(
+      `https://${localhost}/api/controller/admin/auth
+    `,
+      admin
+    );
+  }
 }

@@ -7,10 +7,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using BookStore.Data;
+using BookStore.JwtAuthentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 
 namespace BookStore.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [EnableCors("CorsPolicy")]
     [Route("api/controller/admin")]
     [ApiController]
@@ -18,24 +21,50 @@ namespace BookStore.Controllers
     {
         private readonly IAdminRepo repo;
         private readonly IMapper _mapper;
+        private readonly IJwtAuthenticationManager _jwtAuthenticationManager;
        
 
-        public AdminController(IAdminRepo _repo, IMapper mapper)
+        public AdminController(IAdminRepo _repo, IMapper mapper,IJwtAuthenticationManager jwtAuthenticationManager)
         {
             repo = _repo;
             _mapper = mapper;
+            _jwtAuthenticationManager = jwtAuthenticationManager;
         }
-
+        [AllowAnonymous]
         [HttpPost]
         public ActionResult<AdminReadDto> CreateAdmin(AdminCreateDto adminCreateDto)
         {
             var adminModel = _mapper.Map<Admin>(adminCreateDto);
-            adminModel.UserType = "1";
-            
+
             //memberModel.Contact.ContactInfoId=memberCreateDto.Id;
             repo.CreateAdmin(adminModel);
             repo.SaveChanges();
             return Ok(adminModel);
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("auth")]
+        public ActionResult<AdminReadDto> Authenticate(AdminValidateDto admin)
+        {
+            var result = repo.Validate(admin.NickName,admin.Password);
+
+            if (result == null)
+            {
+                return NotFound("Your password is not correct or this Admin is not exist");
+            }
+
+            var token = _jwtAuthenticationManager.AuthenticateAdmin(admin.NickName);
+            var role = "Admin";
+
+            var tokenModel = new Token()
+            {
+                AccessToken = token, role = role, userId = result.Id, UserName = admin.NickName
+            };
+
+            return Ok(tokenModel);
+
+
         }
 
         [HttpGet]

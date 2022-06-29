@@ -12,7 +12,8 @@ using Microsoft.AspNetCore.Cors;
 
 namespace BookStore.Controllers
 {
-    [Authorize(Roles = "Admin") ]
+    [Authorize(Roles = "Admin,User")]
+    //[Authorize(Roles = "User")]
     [EnableCors("CorsPolicy")]
     [Route("api/controller")]
     [ApiController]
@@ -69,7 +70,7 @@ namespace BookStore.Controllers
                 return NotFound("Member is can not found");
             }
 
-            var token= _jwtAuthenticationManager.Authenticate(member.NickName);
+            var token= _jwtAuthenticationManager.AuthenticateUser(member.NickName);
             var role = "User";
 
             var tokenModel = new Token()

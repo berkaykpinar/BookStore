@@ -32,11 +32,11 @@ export default class MemberService {
   }
 
   getContactInfoByInfoId(id) {
-    return axios.get(`https://${localhost}//api/controller/ContactInfo/` + id);
+    return axios.get(`https://${localhost}/api/controller/ContactInfo/` + id);
   }
 
   getAdvertisementsByMemberId(id) {
-    return axios.get(`https://${localhost}//findByMemberId/` + id);
+    return axios.get(`https://${localhost}/findByMemberId/` + id);
   }
 
   updateAdStatus(id, patch) {

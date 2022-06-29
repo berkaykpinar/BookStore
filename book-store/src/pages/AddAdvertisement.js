@@ -1,6 +1,6 @@
 import { Formik, useFormik } from "formik";
 import { useEffect, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Label,
   Container,
@@ -12,15 +12,19 @@ import {
   Table,
   Icon,
 } from "semantic-ui-react";
+import useAuth from "../hooks/useAuth";
 import BookService from "../services/BookService";
 import MemberService from "../services/MemberService";
 import AddAuthor from "./AddAuthor";
 import AddBook from "./AddBook";
 
 const AddAdvertisement = () => {
-  let memberId = 2;
+  let memberId;
+  const { member } = useAuth();
+  member.userId != undefined ? (memberId = member.userId) : (memberId = 1);
 
-  let history = useHistory();
+  console.log(memberId);
+  let navigate = useNavigate();
 
   const [authorId, setAuthorId] = useState(-1);
   const [authorName, SetAuthorName] = useState("");
@@ -77,7 +81,7 @@ const AddAdvertisement = () => {
       bookId: -1,
       condition: "",
       price: 0,
-      memberId: -1,
+      memberId: member.userId,
     },
     onSubmit: async (value) => {
       value.bookId = bookId;
@@ -87,7 +91,7 @@ const AddAdvertisement = () => {
       alert(
         "Your advertisement successfully  added. It will be published after approved by Admins"
       );
-      history.push("/");
+      navigate("/");
     },
   });
 

@@ -1,20 +1,23 @@
 import { useEffect, useState } from "react";
 import AdminService from "../services/AdminService";
 import { Table, Icon, Button } from "semantic-ui-react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
-const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6InN0cmluZyIsIm5iZiI6MTY0NzAyNzk0NywiZXhwIjoxNjQ3MDQ1OTQ3LCJpYXQiOjE2NDcwMjc5NDd9.GS20N808CHNNaT0Ma1jOFg5M6wFpyLjUB72cl4mC1f0";
 const AwaitingApproval = () => {
-  let adminId = 1;
+  let adminId;
+  const { auth } = useAuth();
+  const { admin } = useAuth();
+  admin?.adminId != undefined ? (adminId = admin.adminId) : (adminId = 1);
+
   const [awaitingAds, setAwaitingAds] = useState([]);
   const [result, setResult] = useState(false);
 
-  let history = useHistory();
+  let navigate = useNavigate();
   useEffect(async () => {
     let adminService = new AdminService();
     adminService
-      .getAwaitingAds(token)
+      .getAwaitingAds(auth.accessToken)
       .then((value) => setAwaitingAds(value.data))
       .catch((err) => console.log(err.data));
   }, []);
@@ -39,7 +42,7 @@ const AwaitingApproval = () => {
     setResult(true);
     adminService.updateApprovalStatus(id, trueObj);
     adminService.addApprovalProcess(process);
-    history.push("/awaitingapproval");
+    navigate("/awaitingapproval");
   };
 
   let handleDelete = (id) => {
@@ -48,7 +51,7 @@ const AwaitingApproval = () => {
     adminService.deleteAdvertisement(id);
 
     adminService.addApprovalProcess(process);
-    history.push("/awaitingapproval");
+    navigate("/awaitingapproval");
   };
 
   console.log(awaitingAds);

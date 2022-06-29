@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BookStore.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     [EnableCors("CorsPolicy")]
     [ApiController]
     [Route("api/controller/bookadvertisement")]

@@ -81,12 +81,15 @@ const Navi = () => {
                 />
               </Link>
 
-              <Button
-                onClick={() => handleAdminLogin()}
-                content="Admin Login"
-                primary
-                style={{ marginRight: "10px" }}
-              />
+              <Link to={"/login/admin"}>
+                <Button
+                  onClick={() => handleAdminLogin()}
+                  content="Admin Login"
+                  primary
+                  style={{ marginRight: "10px" }}
+                />
+              </Link>
+
               <Button secondary>
                 <Link to="/register" style={{ color: "white" }}>
                   Register

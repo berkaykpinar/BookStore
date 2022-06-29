@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { Button, Card, Checkbox, Form, Input, Label } from "semantic-ui-react";
 import MemberService from "../services/MemberService";
 
 const MAIL_REGEX = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
 const Register = () => {
-  let history = useHistory();
+  let navigate = useNavigate();
 
   const [name, setName] = useState("");
 
@@ -47,7 +47,7 @@ const Register = () => {
       alert(errorMsg);
     } else {
       alert("Your account successfully added");
-      history.push("/");
+      navigate("/");
     }
   };
 

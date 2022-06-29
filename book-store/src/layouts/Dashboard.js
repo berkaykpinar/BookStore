@@ -1,5 +1,5 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { Grid, GridColumn } from "semantic-ui-react";
 import AddAdvertisement from "../pages/AddAdvertisement";
 import AdvertisementList from "../pages/AdvertisementList";
@@ -13,6 +13,13 @@ import AwaitingApproval from "../pages/AwaitingApproval";
 import ApprovalLog from "../pages/ApprovalLog";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
+import RequireAuth from "../pages/ReuireAuth";
+import Unauthorized from "../pages/Unauthorized";
+import AdminLogin from "../pages/AdminLogin";
+const ROLES = {
+  User: 0,
+  Admin: 1,
+};
 
 const Dashboard = () => {
   return (
@@ -20,38 +27,53 @@ const Dashboard = () => {
       <Grid>
         <Grid.Row>
           <GridColumn>
-            <Route exact path="/" component={AdvertisementList} />
-            <Route
-              exact
-              path="/searchresults/:word"
-              component={SearchResults}
-            />
-            <Route
-              exact
-              path="/addAdvertisement"
-              component={AddAdvertisement}
-            />
-            <Route
-              exact
-              path="/advertisementDetails/:memberId/:adId"
-              component={AdvertisementDetails}
-            />
-            <Route exact path="/author/:authorId" component={AuthorPage} />
-            <Route exact path="/bookdetails/:bookId" component={BookDetails} />
-            <Route exact path="/library" component={LibraryPage} />
-            <Route
-              exact
-              path="/myadvertisements"
-              component={MyAdvertisements}
-            />
-            <Route
-              exact
-              path="/awaitingapproval"
-              component={AwaitingApproval}
-            />
-            <Route exact path="/approvalLogs" component={ApprovalLog} />
-            <Route exact path="/register" component={Register} />
-            <Route exact path="/login" component={Login} />
+            <Routes>
+              <Route exact path="/" element={<AdvertisementList />} />
+              <Route
+                exact
+                path="/searchresults/:word"
+                element={<SearchResults />}
+              />
+              <Route
+                exact
+                path="/addAdvertisement"
+                element={<AddAdvertisement />}
+              />
+              <Route
+                exact
+                path="/advertisementDetails/:memberId/:adId"
+                element={<AdvertisementDetails />}
+              />
+              <Route exact path="/author/:authorId" element={<AuthorPage />} />
+              <Route
+                exact
+                path="/bookdetails/:bookId"
+                element={<BookDetails />}
+              />
+              {/* protected route */}
+              <Route element={<RequireAuth allowedRoles={["User", "Admin"]} />}>
+                <Route exact path="/library" element={<LibraryPage />} />
+              </Route>
+
+              <Route
+                exact
+                path="/myadvertisements"
+                element={<MyAdvertisements />}
+              />
+              <Route element={<RequireAuth allowedRoles={["Admin"]} />}>
+                <Route
+                  exact
+                  path="/awaitingapproval"
+                  element={<AwaitingApproval />}
+                />
+              </Route>
+
+              <Route exact path="/approvalLogs" element={<ApprovalLog />} />
+              <Route exact path="/register" element={<Register />} />
+              <Route exact path="/login" element={<Login />} />
+              <Route exact path="/login/admin" element={<AdminLogin />} />
+              <Route exact path="/unauthorized" element={<Unauthorized />} />
+            </Routes>
           </GridColumn>
         </Grid.Row>
       </Grid>

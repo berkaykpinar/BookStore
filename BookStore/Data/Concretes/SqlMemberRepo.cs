@@ -50,6 +50,7 @@ namespace BookStore.Data.Concretes
             if (user == null || !BCryptNet.Verify(password,user.Password))
             {
                 throw new ArgumentException("Username or password is incorrect" );
+                return null;
             }
 
             if (user.isEmailConfirmed == false)
@@ -60,11 +61,10 @@ namespace BookStore.Data.Concretes
             else
             { 
                 
-                //var token = _jwtAuthenticationManager(member);
                return   _mapper.Map<MemberReadDto>(user);
             }
 
-            //return _mapper.Map<MemberReadDto>(user);
+          
 
 
         }

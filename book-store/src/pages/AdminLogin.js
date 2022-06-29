@@ -10,9 +10,10 @@ import {
 } from "semantic-ui-react";
 import MemberService from "../services/MemberService";
 import useAuth from "../hooks/useAuth";
-const Login = () => {
+import AdminService from "../services/AdminService";
+const AdminLogin = () => {
   const { setAuth } = useAuth();
-  const { setMember } = useAuth();
+  const { setAdmin } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -24,14 +25,13 @@ const Login = () => {
 
   let info = {
     nickName: nickName,
-    email: email,
     password: password,
   };
 
   let handleLogin = async () => {
-    let memberService = new MemberService();
-    const response = await memberService
-      .validateMember(info)
+    let adminService = new AdminService();
+    const response = await adminService
+      .validateAdmin(info)
       .then((res) => {
         return res;
       })
@@ -52,10 +52,11 @@ const Login = () => {
     }
     const accessToken = response?.data?.accessToken;
     const roles = [response?.data?.role];
-    const userId = response?.data?.userId;
+    const adminId = response?.data?.userId;
 
+    console.log(response);
     setAuth({ nickName, roles, accessToken });
-    setMember({ userId });
+    setAdmin({ adminId });
     setNickName("");
     setPassword("");
     // if (result.includes("Username or password is incorrect")) {
@@ -101,11 +102,11 @@ const Login = () => {
         </Form.Field> */}
         {errorMessage.length > 0 && <Message negative>{errorMessage}</Message>}
         <Button type="submit" onClick={() => handleLogin()}>
-          Submit
+          Login as An Admin
         </Button>
       </Form>
     </Card>
   );
 };
 
-export default Login;
+export default AdminLogin;
