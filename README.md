@@ -19,8 +19,8 @@ Thus, the author and book will be added and other member can use them in the fut
 
 ### Update 30-06-2022
 + Global state management provided with Context Api + Hooks. Every induvidual member accesses their own pages with their Member Id's.
-+ Role based Authorization added. It was provided by JWT Tokens. 
-+ After members logged in the system, they are given an object from backend which includes access token, roles and member Id. This informations are storing in global state management to ensure secure rotes and communicate with backend.
++ Role based authorization added. It was provided by JWT Tokens. 
++ After members logged in the system, they are given an object from backend which includes access token, roles and member Id. This informations are storing in global state management to ensure secure routes and communicate with backend.
 + Passwords are saved to DB via hashing. I used Bcrypt as a hashing algorithm.
 
 ### Technologies
