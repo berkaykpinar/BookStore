@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import BookService from "../services/BookService";
+import BookService from "../api/BookService";
 import {
   Header,
   Table,

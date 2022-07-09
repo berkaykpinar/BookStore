@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Grid, Card, Segment, Header, Table, Icon } from "semantic-ui-react";
-import BookService from "../services/BookService";
+import BookService from "../api/BookService";
 
 const AuthorPage = () => {
   let { authorId } = useParams();

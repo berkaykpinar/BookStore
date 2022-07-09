@@ -2,8 +2,8 @@ namespace BookStore.JwtAuthentication
 {
     public interface IJwtAuthenticationManager
     {
-        public string AuthenticateUser(string username);
+        public string Authenticate(string username,string role,int time);
 
-        public string AuthenticateAdmin(string username);
+       
     }
 }

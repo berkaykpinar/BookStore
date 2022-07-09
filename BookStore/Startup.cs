@@ -25,7 +25,7 @@ namespace BookStore
 {
     public class Startup
     {
-        private readonly string key = " hey this is my test jwt token !!!";
+        private readonly string key = " hey this is my test jwt token !";
 
         public Startup(IConfiguration configuration)
         {
@@ -45,9 +45,11 @@ namespace BookStore
             {
                 opt.AddPolicy(name: _policyName, builder =>
                 {
-                    builder.AllowAnyOrigin()
+                    builder
                         .AllowAnyHeader()
-                        .AllowAnyMethod();
+                        .SetIsOriginAllowed(origin => true)
+                        .AllowAnyMethod()
+                        .AllowCredentials();
                 });
             });
 
@@ -82,7 +84,9 @@ namespace BookStore
                     ValidateIssuerSigningKey = true,
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(key)),
                     ValidateIssuer = false,
-                    ValidateAudience = false
+                    ValidateAudience = false,
+                    ValidateLifetime = true,
+                    ClockSkew = TimeSpan.Zero
 
 
                 };

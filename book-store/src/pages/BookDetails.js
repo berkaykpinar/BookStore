@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Grid, Card, Segment, Header, Table, Icon } from "semantic-ui-react";
-import BookService from "../services/BookService";
+import BookService from "../api/BookService";
 const BookDetails = () => {
   let { bookId } = useParams();
 

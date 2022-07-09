@@ -13,8 +13,8 @@ import {
   Icon,
 } from "semantic-ui-react";
 import useAuth from "../hooks/useAuth";
-import BookService from "../services/BookService";
-import MemberService from "../services/MemberService";
+import BookService from "../api/BookService";
+import MemberService from "../api/MemberService";
 import AddAuthor from "./AddAuthor";
 import AddBook from "./AddBook";
 

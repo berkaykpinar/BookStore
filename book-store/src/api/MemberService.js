@@ -35,8 +35,19 @@ export default class MemberService {
     return axios.get(`https://${localhost}/api/controller/ContactInfo/` + id);
   }
 
-  getAdvertisementsByMemberId(id) {
-    return axios.get(`https://${localhost}/findByMemberId/` + id);
+  getAdvertisementsByMemberId(accessToken, id) {
+    const authAxios = axios.create({
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    return authAxios
+      .get(`https://${localhost}/findByMemberId/` + id)
+      .catch((err) => {
+        if (err.request) {
+          console.log(err.request);
+        }
+      });
   }
 
   updateAdStatus(id, patch) {

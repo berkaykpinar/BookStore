@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import BookService from "../services/BookService";
+import BookService from "../api/BookService";
 import {
   Grid,
   Image,
@@ -12,7 +12,7 @@ import {
   Header,
   Button,
 } from "semantic-ui-react";
-import MemberService from "../services/MemberService";
+import MemberService from "../api/MemberService";
 const AdvertisementDetails = () => {
   let { memberId, adId } = useParams();
   console.log(memberId);
@@ -26,9 +26,9 @@ const AdvertisementDetails = () => {
       .then(async (val) => await setAdvertisementList(val.data));
   }, []);
 
-  useEffect(() => {
+  useEffect(async () => {
     let memberService = new MemberService();
-    memberService
+    await memberService
       .getContactInfoByInfoId(1)
       .then((val) => setContactInfo(val.data));
   }, []);

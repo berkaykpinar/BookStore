@@ -2,9 +2,11 @@ import { useState } from "react";
 
 import { Link, useHistory } from "react-router-dom";
 import { Container, Menu, Input, Form, Button } from "semantic-ui-react";
+import useAuth from "../hooks/useAuth";
 import SearchResults from "../pages/SearchResults";
 
 const Navi = () => {
+  const { auth, setAuth } = useAuth();
   const [isLoggedIn, SetIsLoggedIn] = useState(false);
   const [input, setInput] = useState("");
   const [userType, setUserType] = useState(1);
@@ -17,6 +19,9 @@ const Navi = () => {
     SetIsLoggedIn(true);
     setUserType(1);
   };
+  const handleLogOut = () => {
+    setAuth({});
+  };
   return (
     <div style={{ marginBottom: "3%" }}>
       <Menu inverted size="large" className="app" color="brown">
@@ -27,23 +32,23 @@ const Navi = () => {
           <Menu.Item>
             <Link to="/library">Library</Link>
           </Menu.Item>
-          {isLoggedIn && userType == 1 && (
+          {auth?.nickName && auth?.roles == "Admin" && (
             <Menu.Item>
               <Link to="/awaitingapproval">Awaiting Approval</Link>
             </Menu.Item>
           )}
-          {isLoggedIn && userType == 1 && (
+          {auth?.nickName && auth?.roles == "Admin" && (
             <Menu.Item>
               <Link to="/approvalLogs">Approval Logs</Link>
             </Menu.Item>
           )}
 
-          {isLoggedIn && userType == 2 && (
+          {auth?.nickName && auth?.roles == "User" && (
             <Menu.Item>
               <Link to="/addAdvertisement">Add Advertisement</Link>
             </Menu.Item>
           )}
-          {isLoggedIn && userType == 2 && (
+          {auth?.nickName && auth?.roles == "User" && (
             <Menu.Item>
               <Link to="/myadvertisements">My Advertisements</Link>
             </Menu.Item>
@@ -64,9 +69,9 @@ const Navi = () => {
               </Button>
             </Form>
           </Menu.Item>
-          {isLoggedIn ? (
+          {auth?.nickName ? (
             <Menu.Item position="right">
-              <Link onClick={() => SetIsLoggedIn(false)} to="/">
+              <Link onClick={() => handleLogOut()} to="/">
                 Log Out
               </Link>
             </Menu.Item>

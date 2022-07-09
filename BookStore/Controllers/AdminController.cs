@@ -53,9 +53,9 @@ namespace BookStore.Controllers
             {
                 return NotFound("Your password is not correct or this Admin is not exist");
             }
-
-            var token = _jwtAuthenticationManager.AuthenticateAdmin(admin.NickName);
             var role = "Admin";
+            var token = _jwtAuthenticationManager.Authenticate(admin.NickName,role,30);
+            
 
             var tokenModel = new Token()
             {

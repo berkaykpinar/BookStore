@@ -10,7 +10,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BookStore.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    
+    [Authorize(Roles = "Admin,User")]
     [EnableCors("CorsPolicy")]
     [ApiController]
     [Route("api/controller/bookadvertisement")]
@@ -66,7 +67,7 @@ namespace BookStore.Controllers
 
             return Ok(_mapper.Map<ICollection<BookAdvertisementReadDto>>(adsModel));
         }
-        [AllowAnonymous]
+        
         [HttpGet(template: "/findByMemberId/{id}", Name = "GetBookAdsByMemberId")]
         public ActionResult<IEnumerable<BookAdvertisementReadDto>> GetBookAdsByMemberId(int id)
         {

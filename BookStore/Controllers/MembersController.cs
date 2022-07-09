@@ -69,19 +69,28 @@ namespace BookStore.Controllers
             {
                 return NotFound("Member is can not found");
             }
-
-            var token= _jwtAuthenticationManager.AuthenticateUser(member.NickName);
             var role = "User";
+            var refreshToken= _jwtAuthenticationManager.Authenticate(member.NickName,role,30);
+            
 
             var tokenModel = new Token()
             {
-                AccessToken = token,role = role,userId = result.Id,
+                AccessToken = refreshToken,
+                role = role,userId = result.Id,
                 UserName = member.NickName
             };
             return Ok(tokenModel);
         }
-        
-        
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("/refresh")]
+        public ActionResult SendAccessToken(string nickName,string role)
+        {
+            var accessToken = _jwtAuthenticationManager.Authenticate(nickName, role,10);
+            return Ok(accessToken);
+        }
+
+
         [HttpGet]
         public ActionResult<IEnumerable<MemberReadDto>> GetAllMembers()
         {

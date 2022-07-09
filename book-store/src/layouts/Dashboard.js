@@ -16,10 +16,6 @@ import Login from "../pages/Login";
 import RequireAuth from "../pages/ReuireAuth";
 import Unauthorized from "../pages/Unauthorized";
 import AdminLogin from "../pages/AdminLogin";
-const ROLES = {
-  User: 0,
-  Admin: 1,
-};
 
 const Dashboard = () => {
   return (
@@ -34,11 +30,19 @@ const Dashboard = () => {
                 path="/searchresults/:word"
                 element={<SearchResults />}
               />
-              <Route
-                exact
-                path="/addAdvertisement"
-                element={<AddAdvertisement />}
-              />
+
+              <Route element={<RequireAuth allowedRoles={["User"]} />}>
+                <Route
+                  exact
+                  path="/myadvertisements"
+                  element={<MyAdvertisements />}
+                />
+                <Route
+                  exact
+                  path="/addAdvertisement"
+                  element={<AddAdvertisement />}
+                />
+              </Route>
               <Route
                 exact
                 path="/advertisementDetails/:memberId/:adId"
@@ -51,24 +55,18 @@ const Dashboard = () => {
                 element={<BookDetails />}
               />
               {/* protected route */}
-              <Route element={<RequireAuth allowedRoles={["User", "Admin"]} />}>
-                <Route exact path="/library" element={<LibraryPage />} />
-              </Route>
 
-              <Route
-                exact
-                path="/myadvertisements"
-                element={<MyAdvertisements />}
-              />
+              <Route exact path="/library" element={<LibraryPage />} />
+
               <Route element={<RequireAuth allowedRoles={["Admin"]} />}>
                 <Route
                   exact
                   path="/awaitingapproval"
                   element={<AwaitingApproval />}
                 />
+                <Route exact path="/approvalLogs" element={<ApprovalLog />} />
               </Route>
 
-              <Route exact path="/approvalLogs" element={<ApprovalLog />} />
               <Route exact path="/register" element={<Register />} />
               <Route exact path="/login" element={<Login />} />
               <Route exact path="/login/admin" element={<AdminLogin />} />

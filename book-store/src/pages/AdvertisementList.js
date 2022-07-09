@@ -11,7 +11,7 @@ import {
   Input,
   Icon,
 } from "semantic-ui-react";
-import MemberService from "../services/MemberService";
+import MemberService from "../api/MemberService";
 
 const AdvertisementList = () => {
   let memberservice = new MemberService();

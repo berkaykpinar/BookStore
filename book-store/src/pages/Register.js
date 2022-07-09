@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { Button, Card, Checkbox, Form, Input, Label } from "semantic-ui-react";
-import MemberService from "../services/MemberService";
+import MemberService from "../api/MemberService";
 
 const MAIL_REGEX = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
 const Register = () => {

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import MemberService from "../services/MemberService";
+import MemberService from "../api/MemberService";
 import {
   Grid,
   Card,
@@ -12,25 +12,42 @@ import {
   Input,
   Tab,
 } from "semantic-ui-react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Formik, useFormik } from "formik";
 import useAuth from "../hooks/useAuth";
+import useAxiosPrivate from "../hooks/useAxiosPrivate";
 
 const MyAdvertisements = () => {
+  const axiosPrivate = useAxiosPrivate();
+  const { auth } = useAuth();
   const { member } = useAuth();
   let memberId;
   member?.userId != undefined ? (memberId = member.userId) : (memberId = 1);
 
-  console.log(memberId);
+  console.log(auth);
   const [adsList, setAdsList] = useState([]);
   const [selectedAd, setSelectedAd] = useState(-1);
-  const history = useNavigate();
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  useEffect(async () => {
-    let memberService = new MemberService();
-    await memberService
-      .getAdvertisementsByMemberId(memberId)
-      .then((e) => setAdsList(e.data));
+  useEffect(() => {
+    const getBookAdvertisementList = async () => {
+      try {
+        const response = await axiosPrivate
+          .get(`/findByMemberId/` + memberId)
+          .then((result) => {
+            return result;
+          });
+        setAdsList(response?.data);
+      } catch (error) {
+        console.log(error);
+        //return err?.response?.data;
+        //giriş yaptıktan sonra gitmek istediğimiz sayfaya geri döneriz
+        navigate("/login", { state: { from: location }, replace: true });
+      }
+    };
+
+    getBookAdvertisementList();
   }, []);
 
   let trueObj = [

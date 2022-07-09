@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Table, Icon } from "semantic-ui-react";
-import BookService from "../services/BookService";
+import BookService from "../api/BookService";
 
 const LibraryPage = () => {
   const [books, setBooks] = useState();

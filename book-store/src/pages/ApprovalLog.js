@@ -1,14 +1,32 @@
 import { useEffect, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
-import AdminService from "../services/AdminService";
+import { Link, useHistory, useLocation, useNavigate } from "react-router-dom";
 import { Table, Icon, Button } from "semantic-ui-react";
+import useAuth from "../hooks/useAuth";
+import useAxiosPrivate from "../hooks/useAxiosPrivate";
 const ApprovalLog = () => {
+  const axiosPrivate = useAxiosPrivate();
   const [logs, setLogs] = useState([]);
+  const { auth } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
-    let adminService = new AdminService();
-    adminService.getApprovalProcess().then((e) => setLogs(e.data));
-  });
+    const getBookAdvertisementList = async () => {
+      try {
+        const response = await axiosPrivate
+          .get(`/api/controller/process`)
+          .then((res) => {
+            return res;
+          });
+
+        setLogs(response?.data);
+      } catch (err) {
+        console.log(err?.response.data);
+        navigate("/login/admin", { state: { from: location }, replace: true });
+      }
+    };
+    getBookAdvertisementList();
+  }, []);
 
   return (
     <div>
