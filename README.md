@@ -17,18 +17,18 @@ Thus, the author and book will be added and other member can use them in the fut
 + In book page, The active ads which related to that book are listing.
 
 
-### Future Goals:
-+ Register and Auth will be added.
-+ React redux support will be added
-+ Library page will be improved.
-+ Filtering options will be added.
+### Update 30-06-2022
++ Global state management provided with Context Api + Hooks. Every induvidual member accesses their own pages with their Member Id's.
++ Role based authorization added. It was provided by JWT Tokens. 
++ After members logged in the system, they are given an object from backend which includes access token, roles and member Id. This informations are storing in global state management to ensure secure routes and communicate with backend.
++ Passwords are saved to DB via hashing. I used Bcrypt as a hashing algorithm.
 
 ### Technologies
 ## Backend: 
 .Net 5.0 with Entity Framework Core + Mssql.
 
 ## Frontend:
-React.js with Semantic Ui,Formik,Axios,React Router Dom.
+React.js with Semantic Ui,Axios,React Router Dom.
 
 
 ### Database Diagram
